@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "next lint --fix",
     "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
   },
   "dependencies": {
@@ -14,6 +14,7 @@
     "@emotion/react": "latest",
     "@emotion/server": "latest",
     "@emotion/styled": "latest",
+    "@mui-treasury/layout": "^4.5.1",
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
     "next": "latest",
@@ -21,9 +22,13 @@
     "react-dom": "latest"
   },
   "devDependencies": {
+    "@types/material-ui": "^0.21.12",
     "@types/react": "latest",
+    "@types/react-tap-event-plugin": "^0.0.31",
+    "@typescript-eslint/eslint-plugin": "^5.9.0",
     "eslint": "latest",
     "eslint-config-next": "latest",
+    "eslint-plugin-react-hooks": "^4.3.0",
     "typescript": "latest"
   }
 }
