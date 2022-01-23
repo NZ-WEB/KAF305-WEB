@@ -17,6 +17,7 @@
     "@mui-treasury/layout": "^4.5.1",
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
+    "axios": "^0.25.0",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"
