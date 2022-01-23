@@ -3,10 +3,10 @@ import {FunctionComponent, useState} from "react";
 import {AppContextProvider} from "../context";
 import AppDrawer from "./layout-components/AppDrawer/AppDrawer";
 
-export const Layuot = ({children}: LayoutProps): JSX.Element => {
+export const Layuot = ({children, authorized}: LayoutProps): JSX.Element => {
     return (
         <>
-            <AppDrawer authorized={true}>
+            <AppDrawer authorized={authorized}>
                 {children}
             </AppDrawer>
         </>
@@ -19,17 +19,19 @@ export const withLayout = <T extends Record<string, unknown>>(Component: Functio
             process.browser && (localStorage.getItem('user') ? true : false)
         );
 
+        console.log(authorized, 'authorized')
+
         let user = [];
 
         if (process.browser) {
             const localStorageUserData = localStorage.getItem('user');
             if (authorized) {
-                user = JSON.parse(localStorageUserData);
+                user = JSON.stringify(localStorageUserData);
             }
         }
         return (
             <AppContextProvider user={ user ? user : [] } >
-                <Layuot>
+                <Layuot authorized={authorized}>
                     <Component {...props} />
                 </Layuot>
             </AppContextProvider>

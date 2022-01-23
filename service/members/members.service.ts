@@ -13,7 +13,7 @@ export default class MembersService {
                 }
             );
             return response.data.members;
-        } catch (error) {
+        } catch (error: any) {
             throw error.response;
         }
     }

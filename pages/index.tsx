@@ -39,7 +39,7 @@ const Home: NextPage = () => {
             {/*Displaying members*/}
             {members &&
                 members.map(member => (
-                    <div>
+                    <div key={member.id}>
                         <p>{member.fullName}</p>
                         <p>{member.post}</p>
                         <p>{member.disciplines}</p>

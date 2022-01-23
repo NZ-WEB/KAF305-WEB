@@ -22,8 +22,9 @@ import {AppDrawerProps} from "./AppDrawer.props";
 import {useState} from "react";
 import {AccountCircle} from "@mui/icons-material";
 import {Menu, MenuItem} from "@mui/material";
-import Container from "@mui/material/Container";
-import {bold} from "colorette";
+import Link from 'next/link';
+import Button from '@mui/material/Button';
+import {useRouter} from "next/router";
 
 const drawerWidth = 240;
 
@@ -74,6 +75,7 @@ const DrawerHeader = styled('div')(({theme}) => ({
 
 export default function AppDrawer({children, authorized = false}: AppDrawerProps) {
     const theme = useTheme();
+    const router = useRouter();
     const [open, setOpen] = React.useState(false);
     const [auth, setAuth] = useState(authorized);
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -118,45 +120,60 @@ export default function AppDrawer({children, authorized = false}: AppDrawerProps
                         alt="MAI"
                         loading="lazy"
                         width="40px"
+                        onClick={() => router.push('/')}
+                        style={{cursor: 'pointer'}}
                     />
 
-                    <Typography sx={{flexGrow: 1}} variant={"h6"} marginLeft="5px">
+                    <Typography
+                        style={{cursor: 'pointer'}}
+                        onClick={() => router.push('/')}
+                        sx={{flexGrow: 1}}
+                        variant={"h6"}
+                        marginLeft="5px"
+                    >
                         Кафедра 305
                     </Typography>
 
-                    {auth && (
-                        <div>
-                            <IconButton
-                                size="large"
-                                aria-label="account of current user"
-                                aria-controls="menu-appbar"
-                                aria-haspopup="true"
-                                onClick={handleMenu}
-                                color="inherit"
-                            >
-                                <AccountCircle/>
-                            </IconButton>
-                            <Menu
-                                id="menu-appbar"
-                                anchorEl={anchorEl}
-                                anchorOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                keepMounted
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                open={Boolean(anchorEl)}
-                                onClose={handleClose}
-                            >
-                                <MenuItem onClick={handleClose}>Мой профиль</MenuItem>
-                                <MenuItem onClick={handleClose}>Мой аккаунт</MenuItem>
-                                <MenuItem onClick={handleClose}>Выйти</MenuItem>
-                            </Menu>
-                        </div>
-                    )}
+
+                    {auth ? (
+                            <div>
+                                <IconButton
+                                    size="large"
+                                    aria-label="account of current user"
+                                    aria-controls="menu-appbar"
+                                    aria-haspopup="true"
+                                    onClick={handleMenu}
+                                    color="inherit"
+                                >
+                                    <AccountCircle/>
+                                </IconButton>
+                                <Menu
+                                    id="menu-appbar"
+                                    anchorEl={anchorEl}
+                                    anchorOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    keepMounted
+                                    transformOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    open={Boolean(anchorEl)}
+                                    onClose={handleClose}
+                                >
+                                    <MenuItem onClick={handleClose}>Мой профиль</MenuItem>
+                                    <MenuItem onClick={handleClose}>Мой аккаунт</MenuItem>
+                                    <MenuItem onClick={handleClose}>Выйти</MenuItem>
+                                </Menu>
+                            </div>
+                        )
+                        :
+                        (
+                            <Link href={`/login`}>
+                                <Button color={"white"} variant="outlined">Войти</Button>
+                            </Link>
+                        )}
 
                 </Toolbar>
             </AppBar>
