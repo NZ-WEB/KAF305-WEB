@@ -12,20 +12,25 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import {AppBarProps} from "../../../interfaces/Drawer/Drawer.interfaces";
 import {AppDrawerProps} from "./AppDrawer.props";
 import {useContext, useState} from "react";
-import {AccountCircle} from "@mui/icons-material";
-import {Menu, MenuItem} from "@mui/material";
+import {AccountCircle, ExpandLess} from "@mui/icons-material";
+import {Collapse, ListItemButton, ListSubheader, Menu, MenuItem} from "@mui/material";
 import Link from 'next/link';
 import Button from '@mui/material/Button';
 import {useRouter} from "next/router";
 import {AppContext} from "../../../context";
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import DraftsIcon from '@mui/icons-material/Drafts';
+import SendIcon from '@mui/icons-material/Send';
+import ExpandMore from '@mui/icons-material/ExpandMore';
+import StarBorder from '@mui/icons-material/StarBorder';
+import PeopleIcon from '@mui/icons-material/People';
+import AddIcon from '@mui/icons-material/Add';
+
 
 const drawerWidth = 240;
 
@@ -77,9 +82,14 @@ const DrawerHeader = styled('div')(({theme}) => ({
 export default function AppDrawer({children, authorized = false}: AppDrawerProps) {
     const theme = useTheme();
     const router = useRouter();
-    const [open, setOpen] = React.useState(false);
     const {auth, setAuth} = useContext(AppContext);
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const [open, setOpen] = React.useState(true);
+    const [collapseIsOpened, setCollapseIsOpened] = React.useState(false);
+
+    const handleClick = () => {
+        setCollapseIsOpened(!collapseIsOpened);
+    };
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -87,10 +97,6 @@ export default function AppDrawer({children, authorized = false}: AppDrawerProps
 
     const handleDrawerClose = () => {
         setOpen(false);
-    };
-
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setAuth(event.target.checked);
     };
 
     const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -105,6 +111,14 @@ export default function AppDrawer({children, authorized = false}: AppDrawerProps
         localStorage.clear();
         setAuth(false);
         handleClose();
+    };
+
+    const getCurrentUser = () => {
+        if (process.browser) {
+            const user = JSON.parse( localStorage.getItem('user'));
+            return user.username;
+        }
+        return null;
     };
 
     return (
@@ -208,12 +222,47 @@ export default function AppDrawer({children, authorized = false}: AppDrawerProps
                 <Divider/>
                 <List>
 
-                    {auth && <ListItem button>
-                        <ListItemIcon>
-                            <MailIcon/>
-                        </ListItemIcon>
-                        <ListItemText primary="Редактировать преподавателей"/>
-                    </ListItem>
+                    {auth &&
+                        <List
+                            sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+                            component="nav"
+                            aria-labelledby="nested-list-subheader"
+                            subheader={
+                                <ListSubheader component="div" id="nested-list-subheader">
+                                    {auth && getCurrentUser()}
+                                </ListSubheader>
+                            }
+                        >
+                            {/*<ListItemButton>*/}
+                            {/*    <ListItemIcon>*/}
+                            {/*        <SendIcon />*/}
+                            {/*    </ListItemIcon>*/}
+                            {/*    <ListItemText primary="Sent mail" />*/}
+                            {/*</ListItemButton>*/}
+                            {/*<ListItemButton>*/}
+                            {/*    <ListItemIcon>*/}
+                            {/*        <DraftsIcon />*/}
+                            {/*    </ListItemIcon>*/}
+                            {/*    <ListItemText primary="Drafts" />*/}
+                            {/*</ListItemButton>*/}
+                            <ListItemButton onClick={handleClick}>
+                                <ListItemIcon>
+                                    <PeopleIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="Сотрудники" />
+                                {collapseIsOpened ? <ExpandLess /> : <ExpandMore />}
+                            </ListItemButton>
+                            <Collapse in={collapseIsOpened} timeout="auto" unmountOnExit>
+                                <List component="div" disablePadding>
+                                    <ListItemButton onClick={() => router.push('/member/create')} sx={{ pl: 4 }}>
+                                        <ListItemIcon>
+                                            <AddIcon />
+                                        </ListItemIcon>
+                                        <ListItemText primary="Добавить сотрудника" />
+                                    </ListItemButton>
+                                </List>
+                            </Collapse>
+                        </List>
                     }
 
                 </List>
