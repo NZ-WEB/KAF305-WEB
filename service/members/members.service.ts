@@ -60,6 +60,26 @@ export default class MembersService {
         }
     }
 
+    async delete(slug: string): Promise<AxiosResponse> {
+        const token = JSON.parse(localStorage.getItem('user')).token;
+        try {
+            const response = await axios.delete(
+                `${SERVER_BASE_URL}/members/${slug}`,
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Token ${token}`
+                    },
+                }
+            );
+            console.log(response, 'deleted');
+
+            return response;
+        } catch (error) {
+            throw error.response;
+        }
+    }
+
     async update(data: Object, slug: string): Promise<AxiosResponse> {
         const token = JSON.parse(localStorage.getItem('user')).token;
         try {

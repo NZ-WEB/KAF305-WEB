@@ -1,4 +1,4 @@
-import {Alert, Avatar, Button, Card, CardContent, CardHeader, Skeleton} from "@mui/material";
+import {Alert, Avatar, Button, Card, CardContent, CardHeader, Menu, MenuItem, Skeleton} from "@mui/material";
 import {withLayout} from "../../layout/Layout";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from '@mui/icons-material/Close';
@@ -11,7 +11,8 @@ import {MembersInterface} from "../../interfaces/members.interface";
 import {AppContext} from "../../context";
 import {useForm} from 'react-hook-form';
 import * as React from "react";
-import {AppMemberInfoField, AppMembersAvatar} from "../../src/components";
+import {AppMemberInfoField, AppMembersAvatar, AppModal} from "../../src/components";
+import {AccountCircle} from "@mui/icons-material";
 
 const MemberPage = (): JSX.Element => {
     const {auth: authContext} = useContext(AppContext);
@@ -23,6 +24,8 @@ const MemberPage = (): JSX.Element => {
     const membersService = new MembersService();
     const slug = router.query.slug?.toString();
     const {register, handleSubmit, formState: {errors: formErrors}} = useForm();
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
 
     useEffect(() => {
         if (process.browser && slug) {
@@ -39,6 +42,22 @@ const MemberPage = (): JSX.Element => {
         .then(() => setEditing(false))
         .catch((e) => setErrors([...errors, e]))
     );
+
+    const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const deleteMember = () => {
+        const slug = member.slug;
+        membersService.delete(slug)
+            .then((response) => console.log(response))
+            .catch((e) => setErrors([...errors, e]));
+        router.push('/');
+    };
 
     return member
         ?
@@ -57,13 +76,47 @@ const MemberPage = (): JSX.Element => {
                     }
                     action={
                         auth &&
-                        <IconButton onClick={() => setEditing(!editing)} aria-label="settings">
-                            {editing ? <CloseIcon/> : <EditIcon/>}
-                        </IconButton>
+                        <div>
+                            <IconButton
+                                size="large"
+                                aria-label="account of current user"
+                                aria-controls="menu-appbar"
+                                aria-haspopup="true"
+                                onClick={handleMenu}
+                                color="inherit"
+                            >
+                                <AccountCircle/>
+                            </IconButton>
+                            <Menu
+                                id="menu-appbar"
+                                anchorEl={anchorEl}
+                                anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                open={Boolean(anchorEl)}
+                                onClose={handleClose}
+                            >
+
+                                <MenuItem onClick={() => setEditing(!editing)}>
+                                    {editing ? "Отм. режим редактирования" : "Изменить"}
+                                </MenuItem>
+                                <MenuItem onClick={handleClose}><AppModal handle={() => deleteMember()}
+                                                                          withButton={true} btnText={"Удалить"}
+                                                                          title={"Вы действительно хотите удалить сотрудника"}
+                                                                          subtitle={"после подтверждения, это действие не возможно отменить"}/></MenuItem>
+                            </Menu>
+                        </div>
 
                     }
                     title={member.fullName &&
-                        (editing ? <label>Полное имя<input defaultValue={member.fullName} type="text" {...register("fullName")}/></label> : member.fullName)
+                        (editing ? <label>Полное имя<input defaultValue={member.fullName}
+                                                           type="text" {...register("fullName")}/></label> : member.fullName)
                     }
                     subheader={member.fullName &&
                         (editing ? <label>Должность<input defaultValue={member.post} type="text" {...register("post")}/></label> : member.post)
