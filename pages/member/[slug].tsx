@@ -3,7 +3,6 @@ import {withLayout} from "../../layout/Layout";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from '@mui/icons-material/Close';
 import EditIcon from '@mui/icons-material/Edit';
-import Typography from "@mui/material/Typography";
 import {red} from "@mui/material/colors";
 import {useContext, useEffect, useState} from "react";
 import {useRouter} from "next/router";
@@ -12,7 +11,7 @@ import {MembersInterface} from "../../interfaces/members.interface";
 import {AppContext} from "../../context";
 import {useForm} from 'react-hook-form';
 import * as React from "react";
-import {AppMemberInfoField} from "../../src/components/AppMemberInfoField/AppMemberInfoField";
+import {AppMemberInfoField, AppMembersAvatar} from "../../src/components";
 
 const MemberPage = (): JSX.Element => {
     const {auth: authContext} = useContext(AppContext);
@@ -50,11 +49,11 @@ const MemberPage = (): JSX.Element => {
                     avatar={
                         member.avatar !== ''
                             ?
-                            <Avatar alt="Remy Sharp" src={member.avatar}/>
+                            <AppMembersAvatar editing={editing} url={member.avatar} register={() => register("avatar")}
+                                              registerTitle={"avatar"}/>
                             :
-                            <Avatar sx={{bgcolor: red[500]}} aria-label="recipe">
-                                {member.fullName[0]}
-                            </Avatar>
+                            <AppMembersAvatar editing={editing} url={member.avatar} register={() => register("avatar")}
+                                              registerTitle={"avatar"}/>
                     }
                     action={
                         auth &&
@@ -63,17 +62,28 @@ const MemberPage = (): JSX.Element => {
                         </IconButton>
 
                     }
-                    title={member.fullName}
-                    subheader={member.post}
+                    title={member.fullName &&
+                        (editing ? <label>Полное имя<input defaultValue={member.fullName} type="text" {...register("fullName")}/></label> : member.fullName)
+                    }
+                    subheader={member.fullName &&
+                        (editing ? <label>Должность<input defaultValue={member.post} type="text" {...register("post")}/></label> : member.post)
+                    }
                 />
                 <CardContent>
                     <form onSubmit={onSubmit}>
-                        <AppMemberInfoField data={member.disciplines} title={"Преподаваемые предметы"} editing={editing} register={() => register("disciplines")} registerField={"disciplines"}/>
-                        <AppMemberInfoField data={member.education} title={"Образование"} editing={editing} register={() => register("education")} registerField={"education"}/>
-                        <AppMemberInfoField data={member.qualification} title={"Должность"} editing={editing} register={() => register("qualification")} registerField={"qualification"}/>
-                        <AppMemberInfoField data={member.academicDegree} title={"Кандидатская степень"} editing={editing} register={() => register("academicDegree")} registerField={"academicDegree"}/>
-                        <AppMemberInfoField data={member.specialties} title={"Специализации"} editing={editing} register={() => register("specialties")} registerField={"specialties"}/>
-                        <AppMemberInfoField data={member.totalGuardian} title={"Рабочий стаж"} editing={editing} register={() => register("totalGuardian")} registerField={"totalGuardian"}/>
+                        <AppMemberInfoField data={member.disciplines} title={"Преподаваемые предметы"} editing={editing}
+                                            register={() => register("disciplines")} registerField={"disciplines"}/>
+                        <AppMemberInfoField data={member.education} title={"Образование"} editing={editing}
+                                            register={() => register("education")} registerField={"education"}/>
+                        <AppMemberInfoField data={member.qualification} title={"Должность"} editing={editing}
+                                            register={() => register("qualification")} registerField={"qualification"}/>
+                        <AppMemberInfoField data={member.academicDegree} title={"Кандидатская степень"}
+                                            editing={editing} register={() => register("academicDegree")}
+                                            registerField={"academicDegree"}/>
+                        <AppMemberInfoField data={member.specialties} title={"Специализации"} editing={editing}
+                                            register={() => register("specialties")} registerField={"specialties"}/>
+                        <AppMemberInfoField data={member.totalGuardian} title={"Рабочий стаж"} editing={editing}
+                                            register={() => register("totalGuardian")} registerField={"totalGuardian"}/>
                         {editing && <Button type="submit" variant="contained">Обновить данные</Button>}
                     </form>
                 </CardContent>
