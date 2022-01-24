@@ -6,12 +6,15 @@ import {withLayout} from "../layout/Layout";
 import {useEffect, useState} from "react";
 import MembersService from "../service/members/members.service";
 import {MembersInterface} from "../interfaces/members.interface";
-import {Alert} from "@mui/material";
+import {Alert, Button, Card, CardActions, CardContent} from "@mui/material";
+import {router} from "next/client";
+import {useRouter} from "next/router";
 
 const Home: NextPage = () => {
     const [errors, setErrors] = useState([]);
     const [members, setMembers] = useState<[] | MembersInterface[]>([]);
     const membersService = new MembersService();
+    const router = useRouter();
 
     const getMembersList = () => {
         membersService.getAll()
@@ -39,13 +42,18 @@ const Home: NextPage = () => {
             {/*Displaying members*/}
             {members &&
                 members.map(member => (
-                    <div key={member.id}>
-                        <p>{member.fullName}</p>
-                        <p>{member.post}</p>
-                        <p>{member.disciplines}</p>
-                        <p>{member.education}</p>
-                        <p>{member.qualification}</p>
-                    </div>
+                    <Card  key={member.id}>
+                        <CardContent>
+                            <Typography variant={"h5"} >{member.fullName}</Typography>
+                            <Typography variant={"h6"} >Должность: {member.post}</Typography>
+                            <Typography variant={"caption"} >Дисциплины: {member.disciplines}</Typography>
+                            <Typography variant={"caption"} >{member.education}</Typography>
+                            <Typography variant={"caption"} > {member.qualification}</Typography>
+                        </CardContent>
+                        <CardActions>
+                            <Button onClick={() => router.push(`/member/${member.slug}`)} size="small">Learn More</Button>
+                        </CardActions>
+                    </Card>
                 ))
             }
         </Container>

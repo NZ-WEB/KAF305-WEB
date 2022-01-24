@@ -100,6 +100,12 @@ export default function AppDrawer({children, authorized = false}: AppDrawerProps
         setAnchorEl(null);
     };
 
+    const logout = () => {
+        localStorage.clear();
+        setAuth(false);
+        handleClose();
+    };
+
     return (
         <Box sx={{display: 'flex'}}>
             <CssBaseline/>
@@ -164,7 +170,7 @@ export default function AppDrawer({children, authorized = false}: AppDrawerProps
                                 >
                                     <MenuItem onClick={handleClose}>Мой профиль</MenuItem>
                                     <MenuItem onClick={handleClose}>Мой аккаунт</MenuItem>
-                                    <MenuItem onClick={handleClose}>Выйти</MenuItem>
+                                    <MenuItem onClick={() => logout()}>Выйти</MenuItem>
                                 </Menu>
                             </div>
                         )
@@ -201,7 +207,7 @@ export default function AppDrawer({children, authorized = false}: AppDrawerProps
                 <Divider/>
                 <List>
 
-                    {authorized && <ListItem button>
+                    {auth && <ListItem button>
                         <ListItemIcon>
                             <MailIcon/>
                         </ListItemIcon>

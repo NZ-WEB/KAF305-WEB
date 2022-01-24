@@ -17,4 +17,20 @@ export default class MembersService {
             throw error.response;
         }
     }
+
+    async getBySlug(slug: string): Promise<AxiosResponse> {
+        try {
+            const response = await axios.get(
+                `${SERVER_BASE_URL}/members/${slug}`,
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+            return response.data.members;
+        } catch (e) {
+            throw error.response;
+        }
+    }
 }
