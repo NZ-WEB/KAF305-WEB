@@ -30,7 +30,7 @@ export const withLayout = <T extends Record<string, unknown>>(Component: Functio
             }
         }
         return (
-            <AppContextProvider user={ user ? user : [] } >
+            <AppContextProvider auth={ authorized } >
                 <Layuot authorized={authorized}>
                     <Component {...props} />
                 </Layuot>

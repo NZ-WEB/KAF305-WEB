@@ -1,21 +1,25 @@
-import { createContext, PropsWithChildren, ReactNode, useState } from 'react';
+import {createContext, PropsWithChildren, ReactNode, useEffect, useState} from 'react';
 import {UserInterface} from "../interfaces/user.interface";
 
 export interface IAppContext {
-  user: UserInterface[];
-  setUser?: (newUser: UserInterface[]) => void;
+  auth: boolean;
 }
 
-export const AppContext = createContext<IAppContext>({ user: [] });
+export const AppContext = createContext<IAppContext>({auth: false});
 
-export const AppContextProvider = ({ user, children }: PropsWithChildren<IAppContext>): JSX.Element => {
-  const [userState, setUserState] = useState<UserInterface[]>(user);
+export const AppContextProvider = ({ auth, children }: PropsWithChildren<IAppContext>): JSX.Element => {
+  const [authState, setAuth] = useState<boolean>(false);
 
-  const setUser = (newUser: UserInterface[]) => {
-    setUserState(newUser);
-  }
+  useEffect(() => {
+      if (process.browser) {
+          const localStorageData = localStorage.getItem('user');
+          if (localStorageData) {
+              setAuth(true);
+          }
+      }
+  }, [auth]);
 
-  return <AppContext.Provider value={{user: userState, setUser}} >
+  return <AppContext.Provider value={{auth: authState}} >
       { children }
         </AppContext.Provider>;
       };
