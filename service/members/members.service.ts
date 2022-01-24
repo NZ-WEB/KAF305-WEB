@@ -35,8 +35,7 @@ export default class MembersService {
     }
 
     async update(data: Object, slug: string): Promise<AxiosResponse> {
-        const user = JSON.parse(localStorage.getItem('user'));
-        console.log(user, 'user')
+        const token = JSON.parse(localStorage.getItem('user')).token;
         try {
             const response = await axios.put(
                 `${SERVER_BASE_URL}/members/${slug}`,

@@ -12,6 +12,7 @@ import {MembersInterface} from "../../interfaces/members.interface";
 import {AppContext} from "../../context";
 import {useForm} from 'react-hook-form';
 import * as React from "react";
+import {AppMemberInfoField} from "../../src/components/AppMemberInfoField/AppMemberInfoField";
 
 const MemberPage = (): JSX.Element => {
     const {auth: authContext} = useContext(AppContext);
@@ -35,7 +36,7 @@ const MemberPage = (): JSX.Element => {
 
     const onSubmit = handleSubmit((data) => membersService.update(data, slug)
         .then((member) => setMember(member))
-        .then(member => console.log(member,'new member'))
+        .then(member => console.log(member, 'new member'))
         .then(() => setEditing(false))
         .catch((e) => setErrors([...errors, e]))
     );
@@ -67,53 +68,12 @@ const MemberPage = (): JSX.Element => {
                 />
                 <CardContent>
                     <form onSubmit={onSubmit}>
-                        { member.qualification && <Typography variant="body2" color="text.secondary">
-                            Профиль: {editing ? <input
-                            {...register("qualification")}
-                            type="text"
-                            defaultValue={member.qualification}
-                        /> : member.qualification}
-                        </Typography>}
-                        {member.education && <Typography variant="body2" color="text.secondary">
-                            Образование: {editing ?
-                            <input
-                                {...register("education")}
-                                type="text"
-                                defaultValue={member.education}
-                            /> : member.education}
-                        </Typography>}
-                        {member.disciplines && <Typography variant="body2" color="text.secondary">
-                            Преподаваемые предметы: {editing ?
-                            <input
-                                {...register("disciplines")}
-                                type="text"
-                                defaultValue={member.disciplines}
-                            /> : member.disciplines}
-                        </Typography>}
-                        {member.academicDegree && <Typography variant="body2" color="text.secondary">
-                            Учёная степень: {editing ?
-                            <input
-                                {...register("academicDegree")}
-                                type="text"
-                                defaultValue={member.academicDegree}
-                            /> : member.academicDegree}
-                        </Typography>}
-                        {member.specialties && <Typography variant="body2" color="text.secondary">
-                            Специализация: {editing ?
-                            <input
-                                {...register("specialties")}
-                                type="text"
-                                defaultValue={member.specialties}
-                            /> : member.specialties}
-                        </Typography>}
-                        {member.totalGuardian && <Typography variant="body2" color="text.secondary">
-                            Стаж работы: {editing ?
-                            <input
-                                {...register("totalGuardian")}
-                                type="text"
-                                defaultValue={member.totalGuardian}
-                            /> : member.totalGuardian}
-                        </Typography>}
+                        <AppMemberInfoField data={member.disciplines} title={"Преподаваемые предметы"} editing={editing} register={() => register("disciplines")} registerField={"disciplines"}/>
+                        <AppMemberInfoField data={member.education} title={"Образование"} editing={editing} register={() => register("education")} registerField={"education"}/>
+                        <AppMemberInfoField data={member.qualification} title={"Должность"} editing={editing} register={() => register("qualification")} registerField={"qualification"}/>
+                        <AppMemberInfoField data={member.academicDegree} title={"Кандидатская степень"} editing={editing} register={() => register("academicDegree")} registerField={"academicDegree"}/>
+                        <AppMemberInfoField data={member.specialties} title={"Специализации"} editing={editing} register={() => register("specialties")} registerField={"specialties"}/>
+                        <AppMemberInfoField data={member.totalGuardian} title={"Рабочий стаж"} editing={editing} register={() => register("totalGuardian")} registerField={"totalGuardian"}/>
                         {editing && <Button type="submit" variant="contained">Обновить данные</Button>}
                     </form>
                 </CardContent>

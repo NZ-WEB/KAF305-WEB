@@ -15,7 +15,6 @@ export const AppContextProvider = ({ auth, setAuth, children }: PropsWithChildre
       if (process.browser) {
           const localStorageData = localStorage.getItem('user');
           if (localStorageData) {
-              console.log('меняется контекст в провайдере')
               setAuthState(true);
           }
       }
