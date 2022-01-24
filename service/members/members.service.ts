@@ -33,4 +33,26 @@ export default class MembersService {
             throw error.response;
         }
     }
+
+    async update(data: Object, slug: string): Promise<AxiosResponse> {
+        const user = JSON.parse(localStorage.getItem('user'));
+        console.log(user, 'user')
+        try {
+            const response = await axios.put(
+                `${SERVER_BASE_URL}/members/${slug}`,
+                JSON.stringify({members: data}),
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Token ${token}`
+                    },
+                }
+            );
+            console.log(response.data.members,'res')
+            return response.data.members;
+        } catch (e) {
+            console.log(e,'error response')
+            throw error.response;
+        }
+    }
 }

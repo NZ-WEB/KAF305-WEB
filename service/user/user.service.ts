@@ -19,7 +19,7 @@ export default class UserService {
                     },
                 }
             );
-            localStorage.setItem("user", response.data.user);
+            localStorage.setItem("user", JSON.stringify(response.data.user));
             return response.data.user;
         } catch (error: any) {
             throw error.response.data;

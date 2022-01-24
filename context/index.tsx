@@ -3,23 +3,25 @@ import {UserInterface} from "../interfaces/user.interface";
 
 export interface IAppContext {
   auth: boolean;
+  setAuth: Function | null;
 }
 
-export const AppContext = createContext<IAppContext>({auth: false});
+export const AppContext = createContext<IAppContext>({auth: false, setAuth: null});
 
-export const AppContextProvider = ({ auth, children }: PropsWithChildren<IAppContext>): JSX.Element => {
-  const [authState, setAuth] = useState<boolean>(false);
+export const AppContextProvider = ({ auth, setAuth, children }: PropsWithChildren<IAppContext>): JSX.Element => {
+  const [authState, setAuthState] = useState<boolean>(false);
 
   useEffect(() => {
       if (process.browser) {
           const localStorageData = localStorage.getItem('user');
           if (localStorageData) {
-              setAuth(true);
+              console.log('меняется контекст в провайдере')
+              setAuthState(true);
           }
       }
   }, [auth]);
 
-  return <AppContext.Provider value={{auth: authState}} >
+  return <AppContext.Provider value={{auth: authState, setAuth: setAuthState}} >
       { children }
         </AppContext.Provider>;
       };

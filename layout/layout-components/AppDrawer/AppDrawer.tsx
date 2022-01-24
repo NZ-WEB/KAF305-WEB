@@ -19,12 +19,13 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import {AppBarProps} from "../../../interfaces/Drawer/Drawer.interfaces";
 import {AppDrawerProps} from "./AppDrawer.props";
-import {useState} from "react";
+import {useContext, useState} from "react";
 import {AccountCircle} from "@mui/icons-material";
 import {Menu, MenuItem} from "@mui/material";
 import Link from 'next/link';
 import Button from '@mui/material/Button';
 import {useRouter} from "next/router";
+import {AppContext} from "../../../context";
 
 const drawerWidth = 240;
 
@@ -77,7 +78,7 @@ export default function AppDrawer({children, authorized = false}: AppDrawerProps
     const theme = useTheme();
     const router = useRouter();
     const [open, setOpen] = React.useState(false);
-    const [auth, setAuth] = useState(authorized);
+    const {auth, setAuth} = useContext(AppContext);
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
     const handleDrawerOpen = () => {
