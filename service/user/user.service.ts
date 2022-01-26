@@ -25,4 +25,22 @@ export default class UserService {
             throw error.response.data;
         }
     }
+
+    async register(loginData: ILoginData): Promise<AxiosResponse> {
+        try {
+            const response = await axios.post(
+                `${SERVER_BASE_URL}/users`,
+                JSON.stringify({user: loginData}),
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+            localStorage.setItem("user", JSON.stringify(response.data.user));
+            return response.data.user;
+        } catch (error: any) {
+            throw error.response.data;
+        }
+    }
 }

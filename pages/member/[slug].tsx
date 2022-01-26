@@ -1,9 +1,6 @@
 import {Alert, Avatar, Button, Card, CardContent, CardHeader, Menu, MenuItem, Skeleton} from "@mui/material";
 import {withLayout} from "../../layout/Layout";
 import IconButton from "@mui/material/IconButton";
-import CloseIcon from '@mui/icons-material/Close';
-import EditIcon from '@mui/icons-material/Edit';
-import {red} from "@mui/material/colors";
 import {useContext, useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import MembersService from "../../service/members/members.service";
@@ -12,7 +9,7 @@ import {AppContext} from "../../context";
 import {useForm} from 'react-hook-form';
 import * as React from "react";
 import {AppMemberInfoField, AppMembersAvatar, AppModal} from "../../src/components";
-import {AccountCircle} from "@mui/icons-material";
+import MoreIcon from '@mui/icons-material/MoreVert';
 
 const MemberPage = (): JSX.Element => {
     const {auth: authContext} = useContext(AppContext);
@@ -85,7 +82,7 @@ const MemberPage = (): JSX.Element => {
                                 onClick={handleMenu}
                                 color="inherit"
                             >
-                                <AccountCircle/>
+                                <MoreIcon />
                             </IconButton>
                             <Menu
                                 id="menu-appbar"
