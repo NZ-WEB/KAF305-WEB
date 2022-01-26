@@ -5,11 +5,14 @@
     padding: 22px 20px 16px;
 }
 
-.right {
+.loginBtn {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
 }
+
+
 
 
 

@@ -4,8 +4,15 @@ import Typography from "@mui/material/Typography";
 import PersonIcon from '@mui/icons-material/Person';
 import {Breadcrumbs} from "@mui/material";
 import Link from '@mui/material/Link';
+import Button from "@mui/material/Button";
+import * as React from "react";
 
-const Header = ({...props}: HeaderProps): JSX.Element => {
+const Header = ({auth, setAuth, ...props}: HeaderProps): JSX.Element => {
+
+    const logout = () => {
+        localStorage.clear();
+        setAuth(false);
+    };
 
     return (
         <header {...props} className={styles.header}>
@@ -27,12 +34,23 @@ const Header = ({...props}: HeaderProps): JSX.Element => {
                     Кафедра 305
                 </Typography>
             </div>
-            <div className={styles.right}>
-                <PersonIcon  color="secondary"/>
-                <Typography color="secondary">
-                    Войти
-                </Typography>
-            </div>
+            {auth ?
+                <div onClick={() => logout()} className={styles.loginBtn}>
+                    <PersonIcon color="secondary"/>
+                    <Typography color="secondary">
+                        Выйти
+                    </Typography>
+                </div>
+                :
+                <Link href={`/login`}>
+                    <div className={styles.loginBtn}>
+                        <PersonIcon color="secondary"/>
+                        <Typography color="secondary">
+                            Войти
+                        </Typography>
+                    </div>
+                </Link>
+            }
         </header>
     );
 };

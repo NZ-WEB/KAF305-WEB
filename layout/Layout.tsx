@@ -1,14 +1,20 @@
 import {LayoutProps} from "./Layout.props";
-import {FunctionComponent, useState} from "react";
-import {AppContextProvider} from "../context";
+import {FunctionComponent, useContext, useState} from "react";
+import {AppContext, AppContextProvider} from "../context";
 import AppDrawer from "./layout-components/AppDrawer/AppDrawer";
 import Header from "./Header/Header";
 import styles from './Layout.module.css';
 import {Sidebar} from "./Sidebar/Sidebar";
 import {CustomCurd} from "../src/components/CustomCard/CustomCurd";
 import Head from "next/head";
+import {useRouter} from "next/router";
+import Link from 'next/link';
 
-export const Layuot = ({children, authorized}: LayoutProps): JSX.Element => {
+
+export const Layuot = ({children}: LayoutProps): JSX.Element => {
+    const router = useRouter();
+    const {auth, setAuth} = useContext(AppContext);
+
     return (
         <div className={styles.main}>
             <Head>
@@ -22,7 +28,7 @@ export const Layuot = ({children, authorized}: LayoutProps): JSX.Element => {
 
             <div className={styles.grid}>
                 <div className={styles.header}>
-                    <Header/>
+                    <Header auth={auth} setAuth={() => setAuth()}/>
                 </div>
                 <div className={styles.sidebar}>
                     <Sidebar/>

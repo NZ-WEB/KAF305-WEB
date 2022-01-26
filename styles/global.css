@@ -8,3 +8,7 @@
 body, * {
     font-family: PlusJakartaSans, sans-serif !important;
 }
+
+body {
+    background: url("../src/img/Background.png") no-repeat top center / cover;
+}
