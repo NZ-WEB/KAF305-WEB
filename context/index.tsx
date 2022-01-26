@@ -6,7 +6,14 @@ export interface IAppContext {
   setAuth: Function | null;
 }
 
+export interface IMenuItemsContext {
+    selectedIndex: number;
+    setSelectedIndex: Function | null;
+}
+
 export const AppContext = createContext<IAppContext>({auth: false, setAuth: null});
+
+export const MenuItemsContext = createContext<IMenuItemsContext>({selectedIndex: 0, setSelectedIndex: null});
 
 export const AppContextProvider = ({ auth, setAuth, children }: PropsWithChildren<IAppContext>): JSX.Element => {
   const [authState, setAuthState] = useState<boolean>(false);
