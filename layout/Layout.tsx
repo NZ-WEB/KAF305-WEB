@@ -1,6 +1,6 @@
 import {LayoutProps} from "./Layout.props";
 import {FunctionComponent, useContext, useState} from "react";
-import {AppContext, AppContextProvider} from "../context";
+import {AppContext, AppContextProvider, MenuItemsContext} from "../context";
 import AppDrawer from "./layout-components/AppDrawer/AppDrawer";
 import Header from "./Header/Header";
 import styles from './Layout.module.css';
@@ -39,7 +39,6 @@ export const Layuot = ({children}: LayoutProps): JSX.Element => {
                     </CustomCurd>
                 </div>
             </div>
-
         </div>
     );
 };
@@ -49,6 +48,7 @@ export const withLayout = <T extends Record<string, unknown>>(Component: Functio
         const [authorized, setAuthorizes] = useState<boolean>(
             process.browser && (localStorage.getItem('user') ? true : false)
         );
+
 
         console.log(authorized, 'authorized')
 
@@ -62,9 +62,9 @@ export const withLayout = <T extends Record<string, unknown>>(Component: Functio
         }
         return (
             <AppContextProvider auth={authorized}>
-                <Layuot authorized={authorized}>
-                    <Component {...props} />
-                </Layuot>
+                    <Layuot authorized={authorized}>
+                        <Component {...props} />
+                    </Layuot>
             </AppContextProvider>
         );
     };

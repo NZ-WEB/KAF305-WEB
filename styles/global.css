@@ -12,3 +12,10 @@ body, * {
 body {
     background: url("../src/img/Background.png") no-repeat top center / cover;
 }
+
+:root {
+    --white: #fff;
+    --blue: #0075FF;
+    --grey: #718096;
+    --dark-blue: #1A1F37;
+}

@@ -13,6 +13,12 @@ const theme = createTheme({
         error: {
             main: red.A400,
         },
+        action: {
+            main: '#0075FF',
+        },
+        success: {
+            main: '#1A1F37'
+        }
     },
 });
 

@@ -1,0 +1,16 @@
+.wrapper {
+    box-shadow: 0px 3.5px 5.5px rgba(0, 0, 0, 0.02);
+    border-radius: 12px;
+    background: #1A1F37;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 7px;
+    transition: all 0.3s ease;
+}
+
+.wrapper.active {
+    background: #0075FF;
+}
