@@ -32,28 +32,6 @@ const Home: NextPage = () => {
         <CustomCurd>
             {/*Displaying errors*/}
             {errors.length > 0 && errors.map((error) => <Alert severity="error">{error.message}</Alert>)}
-
-
-            {/*Displaying members*/}
-            {/*{members &&*/}
-            {/*    members.map(member => (*/}
-            {/*        <Card  key={member.id}>*/}
-            {/*            <CardContent>*/}
-            {/*                <Typography variant={"h5"} >{member.fullName}</Typography>*/}
-            {/*                <Typography variant={"h6"} >Должность: {member.post}</Typography>*/}
-            {/*                <Typography variant={"caption"} >Дисциплины: {member.disciplines}</Typography>*/}
-            {/*                <Typography variant={"caption"} >{member.education}</Typography>*/}
-            {/*                <Typography variant={"caption"} > {member.qualification}</Typography>*/}
-            {/*            </CardContent>*/}
-            {/*            <CardActions>*/}
-            {/*                <AppButton onClick={() => router.push(`/member/${member.slug}`)} size="small">Learn More</AppButton>*/}
-            {/*            </CardActions>*/}
-            {/*        </Card>*/}
-            {/*        */}
-
-            {/*    ))*/}
-            {/*}*/}
-
             <AppTable members={members} />
         </CustomCurd>
     );

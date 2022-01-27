@@ -4,4 +4,5 @@ export interface AppButtonProps extends DetailedHTMLProps<HTMLAttributes<HTMLBut
     outlined?: boolean;
     filled?: boolean;
     children: ReactNode;
+    type?: "submit" | "button";
 }

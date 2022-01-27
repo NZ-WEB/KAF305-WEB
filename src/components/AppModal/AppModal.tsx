@@ -62,4 +62,4 @@ export const AppModal = ({title, filled, outline, subtitle, withButton = false, 
             </StyledModal>
         </div>
     );
-}
+};

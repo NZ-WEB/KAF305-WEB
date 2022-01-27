@@ -8,7 +8,7 @@ import * as React from "react";
 
 const CreatePage = (): JSX.Element => {
     const membersService = new MembersService();
-    const [errorsState, setErrorsState] = useState([])
+    const [errorsState, setErrorsState] = useState([]);
     const router = useRouter();
     const {register, handleSubmit, formState: {errors}} = useForm();
 

@@ -1,7 +1,7 @@
 import {TheProfileInfoProps} from "./TheProfileInfo.props";
 import Typography from "@mui/material/Typography";
 import {AppDivider} from "../AppDivider/AppDivider";
-import styles from "./TheProfileInfo.module.css"
+import styles from "./TheProfileInfo.module.css";
 import {CustomCurd} from "../CustomCard/CustomCurd";
 import * as React from "react";
 
@@ -39,4 +39,4 @@ export const TheProfileInfo = ({member, ...props}: TheProfileInfoProps): JSX.Ele
 
         </CustomCurd>
     );
-}
+};

@@ -6,5 +6,5 @@ export const AppDivider = (): JSX.Element => {
         <div className={styles.divider}>
 
         </div>
-    )
+    );
 };

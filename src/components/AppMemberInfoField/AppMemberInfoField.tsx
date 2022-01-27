@@ -22,5 +22,5 @@ export const AppMemberInfoField = ({data, title, editing, register, registerFiel
             </span>
              : data && data}
         </Typography>
-    )
-}
+    );
+};

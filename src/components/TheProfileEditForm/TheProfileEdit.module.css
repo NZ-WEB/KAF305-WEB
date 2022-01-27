@@ -1,0 +1,18 @@
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.sendBtn {
+    background: #0075FF;
+    display: inline-block;
+    max-width: 250px;
+    padding: 10px 32px;
+    backdrop-filter: blur(120px);
+    border-radius: 12px;
+    color: #fff;
+    font-weight: normal;
+    text-transform: uppercase;
+    margin-top: 21px;
+    cursor: pointer;
+}

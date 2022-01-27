@@ -11,6 +11,11 @@ ul, li {
     padding: 0;
 }
 
+button {
+    border: none;
+    outline: none;
+}
+
 body, * {
     font-family: PlusJakartaSans, sans-serif !important;
 }

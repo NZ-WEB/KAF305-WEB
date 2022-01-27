@@ -37,7 +37,7 @@ const ProfileLayout = ({}: ProfileLayoutProps): JSX.Element => {
         })}>
             {member ? <TheProfileHeader errors={errors} setErrors={setErrors} editing={editing} setEditing={setEditing} className={styles.header} member={member} /> : null}
             {member ? <TheProfileInfo className={styles.info} member={member}/> : null}
-            {member ? <TheProfileEditForm className={styles.editForm}/> : null}
+            {member && editing ? <TheProfileEditForm member={member} setMember={setMember} errors={errors} setErrors={setErrors} editing={editing} setEditing={setEditing} className={styles.editForm}/> : null}
         </div>
     );
 };
