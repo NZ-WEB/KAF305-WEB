@@ -65,7 +65,7 @@ export const Sidebar = ({...props}: SidebarProps): JSX.Element => {
 
             <div className={styles.divider}></div>
 
-            <List component="nav">
+            <List component="nav" sx={{marginTop: "-8px"}}>
                 <ListItemButton
                     sx={{
                         borderRadius: "15px",

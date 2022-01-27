@@ -34,9 +34,7 @@ export const Layuot = ({children}: LayoutProps): JSX.Element => {
                     <Sidebar/>
                 </div>
                 <div className={styles.body}>
-                    <CustomCurd>
-                        {children}
-                    </CustomCurd>
+                    {children}
                 </div>
             </div>
         </div>
@@ -62,9 +60,9 @@ export const withLayout = <T extends Record<string, unknown>>(Component: Functio
         }
         return (
             <AppContextProvider auth={authorized}>
-                    <Layuot authorized={authorized}>
-                        <Component {...props} />
-                    </Layuot>
+                <Layuot authorized={authorized}>
+                    <Component {...props} />
+                </Layuot>
             </AppContextProvider>
         );
     };
