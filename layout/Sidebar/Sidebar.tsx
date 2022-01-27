@@ -14,6 +14,7 @@ import ManageAccountsRoundedIcon from '@mui/icons-material/ManageAccountsRounded
 import GroupAddRoundedIcon from '@mui/icons-material/GroupAddRounded';
 import {useRouter} from "next/router";
 import {MenuItemsContext} from "../../context";
+import {AppDivider} from "../../src/components/AppDivider/AppDivider";
 
 export const Sidebar = ({...props}: SidebarProps): JSX.Element => {
     const router = useRouter();
@@ -63,7 +64,7 @@ export const Sidebar = ({...props}: SidebarProps): JSX.Element => {
                 Меню
             </Typography>
 
-            <div className={styles.divider}></div>
+            <AppDivider/>
 
             <List component="nav" sx={{marginTop: "-8px"}}>
                 <ListItemButton

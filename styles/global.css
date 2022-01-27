@@ -5,6 +5,12 @@
     font-display: swap;
 }
 
+ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
 body, * {
     font-family: PlusJakartaSans, sans-serif !important;
 }

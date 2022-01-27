@@ -8,8 +8,12 @@ import {MembersInterface} from "../../interfaces/members.interface";
 import {AppContext} from "../../context";
 import {useForm} from 'react-hook-form';
 import * as React from "react";
-import {AppMemberInfoField, AppMembersAvatar, AppModal} from "../../src/components";
+import {AppButton, AppMemberInfoField, AppMembersAvatar, AppModal, CustomCurd} from "../../src/components";
 import MoreIcon from '@mui/icons-material/MoreVert';
+import styles from "./create/slug.module.css";
+import Typography from "@mui/material/Typography";
+import {AppDivider} from "../../src/components/AppDivider/AppDivider";
+import {TheProfileInfo} from "../../src/components/TheProfileInfo/TheProfileInfo";
 
 const MemberPage = (): JSX.Element => {
     const {auth: authContext} = useContext(AppContext);
@@ -82,7 +86,7 @@ const MemberPage = (): JSX.Element => {
                                 onClick={handleMenu}
                                 color="inherit"
                             >
-                                <MoreIcon />
+                                <MoreIcon/>
                             </IconButton>
                             <Menu
                                 id="menu-appbar"
@@ -138,6 +142,39 @@ const MemberPage = (): JSX.Element => {
                     </form>
                 </CardContent>
             </Card>
+            <CustomCurd>
+                <div className={styles.cardHeader}>
+                    <Avatar variant="rounded" sx={{borderRadius: "15px", width: "80px", height: "80px"}}>
+
+                    </Avatar>
+                    <div className={styles.cardHeaderText}>
+                        <Typography color="primary" sx={{
+                            fontSize: "18px",
+                            fontWeight: "bold",
+                            lineHeight: "140%"
+                        }}>
+                            {member.fullName}
+                        </Typography>
+                        <Typography sx={{
+                            fontSize: "14px",
+                            fontWeight: "normal",
+                            lineHeight: "150%",
+                            color: "#A0AEC0"
+                        }}>
+                            {member.post}
+                        </Typography>
+                    </div>
+                    <div className={styles.buttonGroup}>
+                        <AppButton className={styles.buttonItem} filled={true}>
+                            Изменить
+                        </AppButton>
+                        <AppButton className={styles.buttonItem} >
+                            Удалить
+                        </AppButton>
+                    </div>
+                </div>
+            </CustomCurd>
+            <TheProfileInfo member={member}/>
         </div>
         :
         (

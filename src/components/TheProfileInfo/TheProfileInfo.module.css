@@ -1,0 +1,16 @@
+.profileInfo {
+    text-decoration: none;
+    list-style: none!important;
+    max-width: 70%;
+}
+
+.prifileInfoItem {
+    list-style: none;
+    text-decoration: none!important;
+    color: #A0AEC0;
+    margin: 15px 0;
+}
+
+.prifileInfoItem > strong {
+    color: #fff;
+}

@@ -46,7 +46,7 @@ const Home: NextPage = () => {
             {/*                <Typography variant={"caption"} > {member.qualification}</Typography>*/}
             {/*            </CardContent>*/}
             {/*            <CardActions>*/}
-            {/*                <Button onClick={() => router.push(`/member/${member.slug}`)} size="small">Learn More</Button>*/}
+            {/*                <AppButton onClick={() => router.push(`/member/${member.slug}`)} size="small">Learn More</AppButton>*/}
             {/*            </CardActions>*/}
             {/*        </Card>*/}
             {/*        */}
