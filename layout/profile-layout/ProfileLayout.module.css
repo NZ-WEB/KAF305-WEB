@@ -1,3 +1,5 @@
+
+
 .cardHeader {
     display: flex;
     align-items: center;
@@ -24,8 +26,15 @@
 
 .layout {
     display: grid;
+    width: 100%;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     gap: 20px;
+    grid-template-areas:
+        "header header header header header"
+        "info info info info info";
+}
+
+.layoutEditing {
     grid-template-areas:
         "header header header header header"
         "info info edit edit edit";

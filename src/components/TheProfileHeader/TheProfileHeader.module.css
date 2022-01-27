@@ -1,0 +1,23 @@
+.cardHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cardHeaderText {
+    margin-left: 22px;
+}
+
+.buttonGroup {
+    display: flex;
+
+}
+
+.leftContent {
+    display: flex;
+    align-items: center;
+}
+
+.buttonItem {
+    margin: 0 5px;
+}

@@ -3,6 +3,7 @@ import { styled, Box } from '@mui/system';
 import ModalUnstyled from '@mui/base/ModalUnstyled';
 import {AppModalProps} from "./AppModal.props";
 import {Button} from "@mui/material";
+import {AppButton} from "../AppButton/AppButton";
 
 const StyledModal = styled(ModalUnstyled)`
   position: fixed;
@@ -36,16 +37,16 @@ const style = {
     pb: 3,
 };
 
-export const AppModal = ({title, subtitle, withButton = false, btnText, handle}: AppModalProps):JSX.Element =>  {
+export const AppModal = ({title, filled, outline, subtitle, withButton = false, btnText, handle}: AppModalProps):JSX.Element =>  {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
     return (
         <div>
-            <button type="button" onClick={handleOpen}>
+            <AppButton outlined={outline} filled={filled} onClick={handleOpen}>
                 {btnText}
-            </button>
+            </AppButton>
             <StyledModal
                 aria-labelledby="unstyled-modal-title"
                 aria-describedby="unstyled-modal-description"

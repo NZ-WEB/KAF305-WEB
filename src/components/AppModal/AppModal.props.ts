@@ -4,4 +4,6 @@ export interface AppModalProps {
     subtitle: string;
     withButton?: boolean;
     handle?: any;
+    filled?: boolean;
+    outline?: boolean;
 }
