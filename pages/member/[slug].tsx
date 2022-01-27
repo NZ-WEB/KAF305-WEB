@@ -14,6 +14,7 @@ import styles from "./create/slug.module.css";
 import Typography from "@mui/material/Typography";
 import {AppDivider} from "../../src/components/AppDivider/AppDivider";
 import {TheProfileInfo} from "../../src/components/TheProfileInfo/TheProfileInfo";
+import ProfileLayout from "../../layout/profile-layout/ProfileLayout";
 
 const MemberPage = (): JSX.Element => {
     const {auth: authContext} = useContext(AppContext);
@@ -142,39 +143,7 @@ const MemberPage = (): JSX.Element => {
                     </form>
                 </CardContent>
             </Card>
-            <CustomCurd>
-                <div className={styles.cardHeader}>
-                    <Avatar variant="rounded" sx={{borderRadius: "15px", width: "80px", height: "80px"}}>
-
-                    </Avatar>
-                    <div className={styles.cardHeaderText}>
-                        <Typography color="primary" sx={{
-                            fontSize: "18px",
-                            fontWeight: "bold",
-                            lineHeight: "140%"
-                        }}>
-                            {member.fullName}
-                        </Typography>
-                        <Typography sx={{
-                            fontSize: "14px",
-                            fontWeight: "normal",
-                            lineHeight: "150%",
-                            color: "#A0AEC0"
-                        }}>
-                            {member.post}
-                        </Typography>
-                    </div>
-                    <div className={styles.buttonGroup}>
-                        <AppButton className={styles.buttonItem} filled={true}>
-                            Изменить
-                        </AppButton>
-                        <AppButton className={styles.buttonItem} >
-                            Удалить
-                        </AppButton>
-                    </div>
-                </div>
-            </CustomCurd>
-            <TheProfileInfo member={member}/>
+           <ProfileLayout member={member}/>
         </div>
         :
         (

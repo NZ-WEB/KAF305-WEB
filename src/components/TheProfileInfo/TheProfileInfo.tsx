@@ -5,9 +5,9 @@ import styles from "./TheProfileInfo.module.css"
 import {CustomCurd} from "../CustomCard/CustomCurd";
 import * as React from "react";
 
-export const TheProfileInfo = ({member}: TheProfileInfoProps): JSX.Element => {
+export const TheProfileInfo = ({member, ...props}: TheProfileInfoProps): JSX.Element => {
     return (
-        <CustomCurd>
+        <CustomCurd {...props}>
             <Typography color="primary" sx={{
                 fontSize: "18px",
                 fontWeight: "bold",

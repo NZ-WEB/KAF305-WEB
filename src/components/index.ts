@@ -6,3 +6,4 @@ export * from './AppSidebarIcon/AppSidebarIcon';
 export * from './AppTable/AppTable';
 export * from './AppButton/AppButton';
 export * from './AppDivider/AppDivider';
+export * from './TheProfileEditForm/TheProfileEditForm';
