@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { styled, Box } from '@mui/system';
 import ModalUnstyled from '@mui/base/ModalUnstyled';
-import {AppModalProps} from "./AppModal.props";
-import {Button} from "@mui/material";
+import { AppModalProps } from './AppModal.props';
+import { Button } from '@mui/material';
 
 const StyledModal = styled(ModalUnstyled)`
   position: fixed;
@@ -28,37 +28,47 @@ const Backdrop = styled('div')`
 `;
 
 const style = {
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    p: 2,
-    px: 4,
-    pb: 3,
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  p: 2,
+  px: 4,
+  pb: 3,
 };
 
-export const AppModal = ({title, subtitle, withButton = false, btnText, handle}: AppModalProps):JSX.Element =>  {
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+export const AppModal = ({
+  title,
+  subtitle,
+  withButton = false,
+  btnText,
+  handle,
+}: AppModalProps): JSX.Element => {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
-    return (
-        <div>
-            <button type="button" onClick={handleOpen}>
-                {btnText}
-            </button>
-            <StyledModal
-                aria-labelledby="unstyled-modal-title"
-                aria-describedby="unstyled-modal-description"
-                open={open}
-                onClose={handleClose}
-                BackdropComponent={Backdrop}
-            >
-                <Box sx={style}>
-                    <h2 id="unstyled-modal-title">{title}</h2>
-                    <p id="unstyled-modal-description">{subtitle}</p>
-                    {withButton && <Button onClick={() => handle()} type="button" color="warning" >{btnText}</Button>}
-                </Box>
-            </StyledModal>
-        </div>
-    );
-}
+  return (
+    <div>
+      <button type="button" onClick={handleOpen}>
+        {btnText}
+      </button>
+      <StyledModal
+        aria-labelledby="unstyled-modal-title"
+        aria-describedby="unstyled-modal-description"
+        open={open}
+        onClose={handleClose}
+        BackdropComponent={Backdrop}
+      >
+        <Box sx={style}>
+          <h2 id="unstyled-modal-title">{title}</h2>
+          <p id="unstyled-modal-description">{subtitle}</p>
+          {withButton && (
+            <Button onClick={() => handle()} type="button" color="warning">
+              {btnText}
+            </Button>
+          )}
+        </Box>
+      </StyledModal>
+    </div>
+  );
+};

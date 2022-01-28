@@ -1,7 +1,7 @@
 export interface AppMemberInfoFieldProps {
-    data: string;
-    title: string;
-    editing: boolean;
-    register:  any;
-    registerField: string;
+  data: string;
+  title: string;
+  editing: boolean;
+  register: any;
+  registerField: string;
 }
