@@ -1,14 +1,14 @@
 import * as React from 'react';
 import type { NextPage } from 'next';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
 import { withLayout } from '../layout/Layout';
 import { useEffect, useState } from 'react';
 import MembersService from '../service/members/members.service';
 import { MembersInterface } from '../interfaces/members.interface';
-import { Alert, Button, Card, CardActions, CardContent } from '@mui/material';
-import { router } from 'next/client';
+import { Grid } from '@mui/material';
 import { useRouter } from 'next/router';
+import { TheMembersTable } from '../src/components/TheMembersTable/TheMembersTable';
+import { AppPageTitle } from '../src/components/AppPageTitle/AppPageTitle';
+import { AppErrors } from '../src/components/AppErrors/AppErrors';
 
 const Home: NextPage = () => {
   const [errors, setErrors] = useState([]);
@@ -28,46 +28,22 @@ const Home: NextPage = () => {
   }, []);
 
   return (
-    <Container>
-      {/*Displaying errors*/}
-      {errors.length > 0 &&
-        errors.map((error) => <Alert severity="error">{error.message}</Alert>)}
+    <Grid container spacing={2} gap={1}>
+      <Grid item xs={12}>
+        {errors.length > 0 && <AppErrors errors={errors} />}
+      </Grid>
 
-      <Typography gutterBottom variant={'h3'} sx={{ fontWeight: 'bold' }}>
-        Кафедра 305
-      </Typography>
+      <Grid item xs={12}>
+        <AppPageTitle
+          title="Кафедра 305"
+          description="«Пилотажно-навигационные и информационно-измерительные комплексы»"
+        />
+      </Grid>
 
-      <Typography variant={'h4'} sx={{ fontWeight: 'medium' }}>
-        Пилотажно-навигационные и информационно-измерительные комплексы
-      </Typography>
-
-      {/*Displaying members*/}
-      {members &&
-        members.map((member) => (
-          <Card key={member.id}>
-            <CardContent>
-              <Typography variant={'h5'}>{member.fullName}</Typography>
-              <Typography variant={'h6'}>Должность: {member.post}</Typography>
-              <Typography variant={'caption'}>
-                Дисциплины: {member.disciplines}
-              </Typography>
-              <Typography variant={'caption'}>{member.education}</Typography>
-              <Typography variant={'caption'}>
-                {' '}
-                {member.qualification}
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button
-                onClick={() => router.push(`/member/${member.slug}`)}
-                size="small"
-              >
-                Learn More
-              </Button>
-            </CardActions>
-          </Card>
-        ))}
-    </Container>
+      <Grid item xs={6}>
+        {members && <TheMembersTable members={members} />}
+      </Grid>
+    </Grid>
   );
 };
 

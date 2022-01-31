@@ -17,6 +17,7 @@
     "@mui-treasury/layout": "^4.5.1",
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
+    "@mui/x-data-grid": "^5.4.0",
     "axios": "^0.25.0",
     "next": "latest",
     "react": "latest",
@@ -30,11 +31,11 @@
     "@typescript-eslint/eslint-plugin": "^4.6.1",
     "@typescript-eslint/parser": "^4.6.1",
     "eslint": "^7.12.1",
+    "eslint-config-next": "latest",
     "eslint-config-prettier": "7.2.0",
     "eslint-plugin-prettier": "^3.1.4",
-    "prettier": "^2.1.2",
-    "eslint-config-next": "latest",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "prettier": "^2.1.2",
     "typescript": "latest"
   }
 }

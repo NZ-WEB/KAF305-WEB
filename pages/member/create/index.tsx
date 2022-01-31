@@ -10,8 +10,11 @@ import {
 import { useForm } from 'react-hook-form';
 import MembersService from '../../../service/members/members.service';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import * as React from 'react';
+import {AppErrors} from "../../../src/components/AppErrors/AppErrors";
+import {log} from "util";
+import {AppFormErrorMessage} from "../../../src/components";
 
 const CreatePage = (): JSX.Element => {
   const membersService = new MembersService();
@@ -27,21 +30,14 @@ const CreatePage = (): JSX.Element => {
     membersService
       .create(data)
       .then(() => router.push(`/`))
-      .catch((e) => setErrorsState([...errorsState, e])),
+      .catch((e) => setErrorsState([...errorsState, ...e])),
   );
 
   return (
     <div>
       <Card>
         <CardContent>
-          {errors.fullName && <span>Это поле обязательно</span>}
-          {errors.post && <span>Это поле обязательно</span>}
-          {errorsState.length > 0 &&
-            errorsState.map((error) => (
-              <Alert key={error.message} severity="error">
-                {error.message}
-              </Alert>
-            ))}
+          {errorsState.length > 0 && <AppErrors errors={errorsState}/>}
         </CardContent>
       </Card>
       <Card>
@@ -57,6 +53,9 @@ const CreatePage = (): JSX.Element => {
                   type="text"
                 />
               </label>
+              {errors.fullName && (
+                <AppFormErrorMessage text="Это поле обязательно" />
+              )}
             </div>
             <div>
               <label htmlFor="post">
@@ -66,56 +65,74 @@ const CreatePage = (): JSX.Element => {
                   name="post"
                   type="text"
                 />
+                {errors.post && (
+                  <AppFormErrorMessage text="Это поле обязательно" />
+                )}
               </label>
             </div>
             <div>
               <label htmlFor="disciplines">
                 Дисциплины:{' '}
                 <input
-                  {...register('disciplines')}
+                  {...register('disciplines', { required: true })}
                   name="disciplines"
                   type="text"
                 />
+                {errors.disciplines && (
+                  <AppFormErrorMessage text="Это поле обязательно" />
+                )}
               </label>
             </div>
             <div>
               <label htmlFor="education">
                 Образование:{' '}
                 <input
-                  {...register('education')}
+                  {...register('education', { required: true })}
                   name="education"
                   type="text"
                 />
+                {errors.education && (
+                  <AppFormErrorMessage text="Это поле обязательно" />
+                )}
               </label>
             </div>
             <div>
               <label htmlFor="qualification">
                 Квалификация:{' '}
                 <input
-                  {...register('qualification')}
+                  {...register('qualification', { required: true })}
                   name="qualification"
                   type="text"
                 />
+                {errors.qualification && (
+                  <AppFormErrorMessage text="Это поле обязательно" />
+                )}
               </label>
             </div>
             <div>
               <label htmlFor="academicDegree">
                 Кандидатская степень:{' '}
                 <input
-                  {...register('academicDegree')}
+                  {...register('academicDegree', { required: true })}
                   name="academicDegree"
                   type="text"
                 />
+                {errors.academicDegree && (
+                  <AppFormErrorMessage text="Это поле обязательно" />
+                )}
               </label>
             </div>
             <div>
               <label htmlFor="specialties">
                 Специальность:{' '}
                 <input
-                  {...register('specialties')}
+                  {...register('specialties', { required: true })}
                   name="specialties"
                   type="text"
                 />
+                {errors.specialties && (
+                  <AppFormErrorMessage text="Это поле обязательно" />
+                )}
               </label>
             </div>
 
@@ -123,36 +140,48 @@ const CreatePage = (): JSX.Element => {
               <label htmlFor="advancedTraining">
                 Повышение квалификации:{' '}
                 <input
-                  {...register('advancedTraining')}
+                  {...register('advancedTraining', { required: true })}
                   name="advancedTraining"
                   type="text"
                 />
+                {errors.advancedTraining && (
+                  <AppFormErrorMessage text="Это поле обязательно" />
+                )}
               </label>
             </div>
             <div>
               <label htmlFor="specGuardian">
                 Стаж работы по специальности:{' '}
                 <input
-                  {...register('specGuardian')}
+                  {...register('specGuardian',{ required: true })}
                   name="specGuardian"
                   type="text"
                 />
+                {errors.specGuardian && (
+                  <AppFormErrorMessage text="Это поле обязательно" />
+                )}
               </label>
             </div>
             <div>
               <label htmlFor="totalGuardian">
                 Рабочий стаж:{' '}
                 <input
-                  {...register('totalGuardian')}
+                  {...register('totalGuardian',{ required: true })}
                   name="totalGuardian"
                   type="text"
                 />
+                {errors.totalGuardian && (
+                  <AppFormErrorMessage text="Это поле обязательно" />
+                )}
               </label>
             </div>
             <div>
               <label htmlFor="avatar">
                 Аватар:{' '}
-                <input {...register('avatar')} name="avatar" type="text" />
+                <input {...register('avatar',{ required: true })} name="avatar" type="text" />
+                {errors.avatar && (
+                  <AppFormErrorMessage text="Это поле обязательно" />
+                )}
               </label>
             </div>
             <Button type="submit" variant="contained">
