@@ -1,6 +1,6 @@
-import {ReactNode} from "react";
+import { ReactNode } from 'react';
 
 export interface AppDrawerProps {
-    children: ReactNode;
-    authorized?: boolean;
+  children: ReactNode;
+  authorized?: boolean;
 }

@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { SERVER_BASE_URL } from '../../utils/constants';
+import { MembersInterface } from '../../interfaces/members.interface';
 
 export default class MembersService {
   async getAll(): Promise<AxiosResponse> {
@@ -28,7 +29,7 @@ export default class MembersService {
     }
   }
 
-  async create(data: Object): Promise<AxiosResponse> {
+  async create(data: MembersInterface): Promise<AxiosResponse> {
     try {
       const token = JSON.parse(localStorage.getItem('user')).token;
 
@@ -46,7 +47,7 @@ export default class MembersService {
 
       return response;
     } catch (error) {
-        console.log(error.response.data.message)
+      console.log(error.response.data.message);
       throw error.response.data.message;
     }
   }
@@ -71,7 +72,7 @@ export default class MembersService {
     }
   }
 
-  async update(data: Object, slug: string): Promise<AxiosResponse> {
+  async update(data: MembersInterface, slug: string): Promise<AxiosResponse> {
     const token = JSON.parse(localStorage.getItem('user')).token;
     try {
       const response = await axios.put(

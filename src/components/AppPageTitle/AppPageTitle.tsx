@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader } from '@mui/material';
+import { Card, CardContent } from '@mui/material';
 import { AppPageTitleProps } from './AppPageTitle.props';
 import Typography from '@mui/material/Typography';
 

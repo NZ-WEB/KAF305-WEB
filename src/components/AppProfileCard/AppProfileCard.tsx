@@ -1,16 +1,23 @@
 import { AppProfileCardProps } from './AppProfileCard.props';
-import {Avatar, Button, Card, CardContent, CardHeader, Menu, MenuItem} from '@mui/material';
+import {
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  Menu,
+  MenuItem,
+} from '@mui/material';
 import IconButton from '@mui/material/IconButton';
-import MoreIcon from "@mui/icons-material/MoreVert";
-import {AppModal} from "../AppModal/AppModal";
-import * as React from "react";
-import {useContext, useState} from "react";
-import MembersService from "../../../service/members/members.service";
-import {AppContext} from "../../../context";
-import {useRouter} from "next/router";
-import {useForm} from "react-hook-form";
-import {AppMembersAvatar} from "../AppMembersAvatar/AppMembersAvatar";
-import {AppMemberInfoField} from "../AppMemberInfoField/AppMemberInfoField";
+import MoreIcon from '@mui/icons-material/MoreVert';
+import { AppModal } from '../AppModal/AppModal';
+import * as React from 'react';
+import { useContext, useState } from 'react';
+import MembersService from '../../../service/members/members.service';
+import { AppContext } from '../../../context';
+import { useRouter } from 'next/router';
+import { useForm } from 'react-hook-form';
+import { AppMembersAvatar } from '../AppMembersAvatar/AppMembersAvatar';
+import { AppMemberInfoField } from '../AppMemberInfoField/AppMemberInfoField';
 
 export const AppProfileCard = ({
   member,
@@ -24,11 +31,7 @@ export const AppProfileCard = ({
   const router = useRouter();
   const membersService = new MembersService();
   const slug = router.query.slug?.toString();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors: formErrors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const onSubmit = handleSubmit((data) =>

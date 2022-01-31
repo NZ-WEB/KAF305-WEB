@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 import MembersService from '../service/members/members.service';
 import { MembersInterface } from '../interfaces/members.interface';
 import { Grid } from '@mui/material';
-import { useRouter } from 'next/router';
 import { TheMembersTable } from '../src/components/TheMembersTable/TheMembersTable';
 import { AppPageTitle } from '../src/components/AppPageTitle/AppPageTitle';
 import { AppErrors } from '../src/components/AppErrors/AppErrors';
@@ -14,7 +13,6 @@ const Home: NextPage = () => {
   const [errors, setErrors] = useState([]);
   const [members, setMembers] = useState<[] | MembersInterface[]>([]);
   const membersService = new MembersService();
-  const router = useRouter();
 
   const getMembersList = () => {
     membersService

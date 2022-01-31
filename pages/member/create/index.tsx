@@ -1,20 +1,12 @@
 import { withLayout } from '../../../layout/Layout';
-import {
-  Alert,
-  Button,
-  Card,
-  CardContent,
-  CardHeader,
-  Typography,
-} from '@mui/material';
+import { Button, Card, CardContent, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import MembersService from '../../../service/members/members.service';
 import { useRouter } from 'next/router';
-import {useEffect, useState} from 'react';
+import { useState } from 'react';
 import * as React from 'react';
-import {AppErrors} from "../../../src/components/AppErrors/AppErrors";
-import {log} from "util";
-import {AppFormErrorMessage} from "../../../src/components";
+import { AppErrors } from '../../../src/components/AppErrors/AppErrors';
+import { AppFormErrorMessage } from '../../../src/components';
 
 const CreatePage = (): JSX.Element => {
   const membersService = new MembersService();
@@ -37,7 +29,7 @@ const CreatePage = (): JSX.Element => {
     <div>
       <Card>
         <CardContent>
-          {errorsState.length > 0 && <AppErrors errors={errorsState}/>}
+          {errorsState.length > 0 && <AppErrors errors={errorsState} />}
         </CardContent>
       </Card>
       <Card>
@@ -153,7 +145,7 @@ const CreatePage = (): JSX.Element => {
               <label htmlFor="specGuardian">
                 Стаж работы по специальности:{' '}
                 <input
-                  {...register('specGuardian',{ required: true })}
+                  {...register('specGuardian', { required: true })}
                   name="specGuardian"
                   type="text"
                 />
@@ -166,7 +158,7 @@ const CreatePage = (): JSX.Element => {
               <label htmlFor="totalGuardian">
                 Рабочий стаж:{' '}
                 <input
-                  {...register('totalGuardian',{ required: true })}
+                  {...register('totalGuardian', { required: true })}
                   name="totalGuardian"
                   type="text"
                 />
@@ -178,7 +170,11 @@ const CreatePage = (): JSX.Element => {
             <div>
               <label htmlFor="avatar">
                 Аватар:{' '}
-                <input {...register('avatar',{ required: true })} name="avatar" type="text" />
+                <input
+                  {...register('avatar', { required: true })}
+                  name="avatar"
+                  type="text"
+                />
                 {errors.avatar && (
                   <AppFormErrorMessage text="Это поле обязательно" />
                 )}

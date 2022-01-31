@@ -1,31 +1,13 @@
-import {
-  Alert,
-  Avatar,
-  Button,
-  Card,
-  CardContent,
-  CardHeader,
-  Menu,
-  MenuItem,
-  Skeleton,
-} from '@mui/material';
+import { Skeleton } from '@mui/material';
 import { withLayout } from '../../layout/Layout';
-import IconButton from '@mui/material/IconButton';
 import { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import MembersService from '../../service/members/members.service';
 import { MembersInterface } from '../../interfaces/members.interface';
 import { AppContext } from '../../context';
-import { useForm } from 'react-hook-form';
 import * as React from 'react';
-import {
-  AppMemberInfoField,
-  AppMembersAvatar,
-  AppModal,
-  AppProfileCard,
-} from '../../src/components';
-import MoreIcon from '@mui/icons-material/MoreVert';
-import {AppErrors} from "../../src/components/AppErrors/AppErrors";
+import { AppProfileCard } from '../../src/components';
+import { AppErrors } from '../../src/components/AppErrors/AppErrors';
 
 const MemberPage = (): JSX.Element => {
   const [member, setMember] = useState<null | MembersInterface>(null);
@@ -46,7 +28,7 @@ const MemberPage = (): JSX.Element => {
 
   return member ? (
     <div>
-      {errors.length > 0 && <AppErrors errors={errors}/>}
+      {errors.length > 0 && <AppErrors errors={errors} />}
 
       <AppProfileCard
         member={member}
