@@ -1,3 +1,5 @@
+import { PublicationInterface } from './publication.interface';
+
 export interface MembersInterface {
   id: number;
   slug: string;
@@ -12,5 +14,5 @@ export interface MembersInterface {
   specGuardian?: string;
   totalGuardian?: string;
   avatar?: string;
-  publications?: string[];
+  publications?: PublicationInterface[];
 }

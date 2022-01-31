@@ -2,12 +2,14 @@ import { AppProfileCardProps } from './AppProfileCard.props';
 import {
   Button,
   Card,
+  CardActions,
   CardContent,
   CardHeader,
+  Collapse,
   Menu,
   MenuItem,
+  Typography,
 } from '@mui/material';
-import IconButton from '@mui/material/IconButton';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { AppModal } from '../AppModal/AppModal';
 import * as React from 'react';
@@ -18,6 +20,25 @@ import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { AppMembersAvatar } from '../AppMembersAvatar/AppMembersAvatar';
 import { AppMemberInfoField } from '../AppMemberInfoField/AppMemberInfoField';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { styled } from '@mui/material/styles';
+import IconButton, { IconButtonProps } from '@mui/material/IconButton';
+import { AppPublicationCard } from '../AppPublicationCard/AppPublicationCard';
+
+interface ExpandMoreProps extends IconButtonProps {
+  expand: boolean;
+}
+
+const ExpandMore = styled((props: ExpandMoreProps) => {
+  const { expand, ...other } = props;
+  return <IconButton {...other} />;
+})(({ theme, expand }) => ({
+  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
+  marginLeft: 'auto',
+  transition: theme.transitions.create('transform', {
+    duration: theme.transitions.duration.shortest,
+  }),
+}));
 
 export const AppProfileCard = ({
   member,
@@ -33,6 +54,11 @@ export const AppProfileCard = ({
   const slug = router.query.slug?.toString();
   const { register, handleSubmit } = useForm();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [expanded, setExpanded] = React.useState(false);
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
 
   const onSubmit = handleSubmit((data) =>
     membersService
@@ -208,6 +234,26 @@ export const AppProfileCard = ({
           )}
         </form>
       </CardContent>
+      <CardActions disableSpacing>
+        <ExpandMore
+          expand={expanded}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
+        >
+          <ExpandMoreIcon />
+        </ExpandMore>
+      </CardActions>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <CardContent>
+          <Typography variant={'h6'}>Публикации</Typography>
+        </CardContent>
+
+        {member.publications &&
+          member.publications.map((publication) => {
+            return <AppPublicationCard publication={publication} />;
+          })}
+      </Collapse>
     </Card>
   );
 };

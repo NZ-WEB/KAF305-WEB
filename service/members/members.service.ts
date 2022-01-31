@@ -25,7 +25,7 @@ export default class MembersService {
       });
       return response.data.members;
     } catch (e) {
-      throw error.response;
+      throw e.response;
     }
   }
 
@@ -88,8 +88,7 @@ export default class MembersService {
       console.log(response.data.members, 'res');
       return response.data.members;
     } catch (e) {
-      console.log(e, 'error response');
-      throw error.response;
+      throw e.response;
     }
   }
 }

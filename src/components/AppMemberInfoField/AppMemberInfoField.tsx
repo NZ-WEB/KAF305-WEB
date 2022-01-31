@@ -16,7 +16,7 @@ export const AppMemberInfoField = ({
   registerField,
 }: AppMemberInfoFieldProps): JSX.Element => {
   return (
-    <Typography variant="body2" color="text.secondary">
+    <Typography variant="subtitle1" color="text.secondary">
       {data && `${title}:`}{' '}
       {editing ? (
         <span>
