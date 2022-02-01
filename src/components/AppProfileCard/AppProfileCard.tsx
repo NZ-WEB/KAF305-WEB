@@ -17,7 +17,7 @@ import { useContext, useState } from 'react';
 import MembersService from '../../../service/members/members.service';
 import { AppContext } from '../../../context';
 import { useRouter } from 'next/router';
-import { useForm } from 'react-hook-form';
+import { FieldValues, UnpackNestedValue, useForm} from 'react-hook-form';
 import { AppMembersAvatar } from '../AppMembersAvatar/AppMembersAvatar';
 import { AppMemberInfoField } from '../AppMemberInfoField/AppMemberInfoField';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -60,7 +60,7 @@ export const AppProfileCard = ({
     setExpanded(!expanded);
   };
 
-  const onSubmit = handleSubmit((data) =>
+  const onSubmit = handleSubmit((data: UnpackNestedValue<FieldValues>) =>
     membersService
       .update(data, slug)
       .then((member) => setMember(member))
@@ -251,7 +251,7 @@ export const AppProfileCard = ({
 
         {member.publications &&
           member.publications.map((publication) => {
-            return <AppPublicationCard publication={publication} />;
+            return <AppPublicationCard auth={auth} publication={publication} />;
           })}
       </Collapse>
     </Card>

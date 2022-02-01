@@ -3,4 +3,5 @@ export interface PublicationInterface {
   slug: string;
   title: string;
   body: string;
+  published: string;
 }
