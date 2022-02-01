@@ -5,3 +5,4 @@ export * from './TheAppBar/TheAppBar';
 export * from './TheMembersTable/TheMembersTable';
 export * from './AppProfileCard/AppProfileCard';
 export * from './AppFormErrorMessage/AppFormErrorMessage';
+export * from './AppProfileExpanded/AppProfileExpanded';
