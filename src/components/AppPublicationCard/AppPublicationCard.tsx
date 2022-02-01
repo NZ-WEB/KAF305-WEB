@@ -1,7 +1,6 @@
 import { AppPublicationCardProps } from './AppPublicationCard.props';
 import {
   Card,
-  CardActions,
   CardContent,
   CardHeader,
   Input,
@@ -12,20 +11,34 @@ import IconButton from '@mui/material/IconButton';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Button from '@mui/material/Button';
+import PublicationsService from "../../../service/publications/publications.service";
+import {PublicationInterface} from "../../../interfaces/publication.interface";
 
 export const AppPublicationCard = ({
   publication,
   auth = false,
+  errors,
+  setErrors,
   ...props
 }: AppPublicationCardProps): JSX.Element => {
+  const publicationService = new PublicationsService();
+  const [publicationState, setPublicationsState] = useState<PublicationInterface>(publication);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors: formErrors },
   } = useForm();
 
-  const onSubmit = handleSubmit((data) => console.log(data));
+  const onSubmit = handleSubmit((data) =>
+    publicationService
+      .update(data, publication.slug)
+      .then((updatedPublication: PublicationInterface) =>
+        setPublicationsState(updatedPublication),
+      )
+      .then(() => setIsEditing(!isEditing))
+      .catch((e) => setErrors([...errors, e.message])),
+  );
 
   return (
     <Card {...props}>
@@ -35,26 +48,26 @@ export const AppPublicationCard = ({
             title={
               isEditing ? (
                 <Input
-                  defaultValue={publication.title}
+                  defaultValue={publicationState.title}
                   placeholder="Название"
                   {...register('title')}
                 />
               ) : (
                 <Typography variant={'subtitle2'}>
-                  {publication.title}
+                  {publicationState.title}
                 </Typography>
               )
             }
             subheader={
               isEditing ? (
                 <Input
-                  defaultValue={publication.published}
+                  defaultValue={publicationState.published}
                   placeholder="Опубликовано в..."
                   {...register('published')}
                 />
               ) : (
                 <Typography variant={'subtitle1'}>
-                  {publication.published}
+                  {publicationState.published}
                 </Typography>
               )
             }
@@ -78,9 +91,9 @@ export const AppPublicationCard = ({
         )}
         <CardContent>
           {isEditing ? (
-            <Input placeholder="Основной текст" defaultValue={publication.body} {...register('body')} />
+            <Input placeholder="Основной текст" defaultValue={publicationState.body} {...register('body')} />
           ) : (
-            <Typography variant={'subtitle1'}>{publication.body}</Typography>
+            <Typography variant={'subtitle1'}>{publicationState.body}</Typography>
           )}
         </CardContent>
       </form>

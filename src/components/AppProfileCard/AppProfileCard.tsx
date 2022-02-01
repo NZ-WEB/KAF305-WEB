@@ -251,7 +251,7 @@ export const AppProfileCard = ({
 
         {member.publications &&
           member.publications.map((publication) => {
-            return <AppPublicationCard auth={auth} publication={publication} />;
+            return <AppPublicationCard errors={errors} setErrors={setErrors} auth={auth} publication={publication} />;
           })}
       </Collapse>
     </Card>
