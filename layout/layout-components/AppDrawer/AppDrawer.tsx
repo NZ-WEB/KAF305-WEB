@@ -122,8 +122,16 @@ export default function AppDrawer({ children }: AppDrawerProps) {
               <AppSideBarListItem title="Сотрудники" expanding={true}>
                 <AppSideBarListItem
                   title="Добавить сотрудника"
-                  route="/home-page/news/create"
+                  route="/member/create"
                 />
+              </AppSideBarListItem>
+              <AppSideBarListItem title="Домашняя страница" expanding={true}>
+                <AppSideBarListItem title="Новости" expanding={true}>
+                  <AppSideBarListItem
+                    title="Добавить новость"
+                    route="/home-page/news/create"
+                  />
+                </AppSideBarListItem>
               </AppSideBarListItem>
             </List>
           )}
