@@ -11,16 +11,11 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { AppDrawerProps } from './AppDrawer.props';
 import { useContext } from 'react';
-import { ExpandLess } from '@mui/icons-material';
-import { Collapse, ListItemButton, ListSubheader } from '@mui/material';
+import { ListSubheader } from '@mui/material';
 import { useRouter } from 'next/router';
 import { AppContext } from '../../../context';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import ExpandMore from '@mui/icons-material/ExpandMore';
-import PeopleIcon from '@mui/icons-material/People';
-import AddIcon from '@mui/icons-material/Add';
 import { TheAppBar } from '../../../src/components';
+import AppSideBarListItem from '../../../src/components/AppSideBarListItem/AppSideBarListItem';
 
 const drawerWidth = 240;
 
@@ -53,21 +48,9 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 export default function AppDrawer({ children }: AppDrawerProps) {
   const theme = useTheme();
-  const router = useRouter();
   const { auth, setAuth } = useContext(AppContext);
 
   const [open, setOpen] = React.useState(true);
-  const [collapseFirstIsOpened, setCollapseFirstIsOpened] =
-    React.useState(false);
-  const [collapseSecondIsOpened, setCollapseSecondIsOpened] =
-    React.useState(false);
-
-  const handleFirstClick = () => {
-    setCollapseFirstIsOpened(!collapseFirstIsOpened);
-  };
-  const handleSecondClick = () => {
-    setCollapseSecondIsOpened(!collapseSecondIsOpened);
-  };
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -136,51 +119,12 @@ export default function AppDrawer({ children }: AppDrawerProps) {
                 </ListSubheader>
               }
             >
-              <ListItemButton onClick={handleFirstClick}>
-                <ListItemIcon>
-                  <PeopleIcon />
-                </ListItemIcon>
-                <ListItemText primary="Сотрудники" />
-                {collapseFirstIsOpened ? <ExpandLess /> : <ExpandMore />}
-              </ListItemButton>
-              <Collapse in={collapseFirstIsOpened} timeout="auto" unmountOnExit>
-                <List component="div" disablePadding>
-                  <ListItemButton
-                    onClick={() => router.push('/member/create')}
-                    sx={{ pl: 4 }}
-                  >
-                    <ListItemIcon>
-                      <AddIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Добавить сотрудника" />
-                  </ListItemButton>
-                </List>
-              </Collapse>
-
-              <ListItemButton onClick={handleSecondClick}>
-                <ListItemIcon>
-                  <PeopleIcon />
-                </ListItemIcon>
-                <ListItemText primary="Главная страница" />
-                {collapseSecondIsOpened ? <ExpandLess /> : <ExpandMore />}
-              </ListItemButton>
-              <Collapse
-                in={collapseSecondIsOpened}
-                timeout="auto"
-                unmountOnExit
-              >
-                <List component="div" disablePadding>
-                  <ListItemButton
-                    onClick={() => router.push('/home-page/news/create')}
-                    sx={{ pl: 4 }}
-                  >
-                    <ListItemIcon>
-                      <AddIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Добавить новость" />
-                  </ListItemButton>
-                </List>
-              </Collapse>
+              <AppSideBarListItem title="Сотрудники" expanding={true}>
+                <AppSideBarListItem
+                  title="Добавить сотрудника"
+                  route="/home-page/news/create"
+                />
+              </AppSideBarListItem>
             </List>
           )}
         </List>
