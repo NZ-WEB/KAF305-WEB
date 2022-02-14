@@ -57,10 +57,16 @@ export default function AppDrawer({ children }: AppDrawerProps) {
   const { auth, setAuth } = useContext(AppContext);
 
   const [open, setOpen] = React.useState(true);
-  const [collapseIsOpened, setCollapseIsOpened] = React.useState(false);
+  const [collapseFirstIsOpened, setCollapseFirstIsOpened] =
+    React.useState(false);
+  const [collapseSecondIsOpened, setCollapseSecondIsOpened] =
+    React.useState(false);
 
-  const handleClick = () => {
-    setCollapseIsOpened(!collapseIsOpened);
+  const handleFirstClick = () => {
+    setCollapseFirstIsOpened(!collapseFirstIsOpened);
+  };
+  const handleSecondClick = () => {
+    setCollapseSecondIsOpened(!collapseSecondIsOpened);
   };
 
   const handleDrawerOpen = () => {
@@ -130,14 +136,14 @@ export default function AppDrawer({ children }: AppDrawerProps) {
                 </ListSubheader>
               }
             >
-              <ListItemButton onClick={handleClick}>
+              <ListItemButton onClick={handleFirstClick}>
                 <ListItemIcon>
                   <PeopleIcon />
                 </ListItemIcon>
                 <ListItemText primary="Сотрудники" />
-                {collapseIsOpened ? <ExpandLess /> : <ExpandMore />}
+                {collapseFirstIsOpened ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
-              <Collapse in={collapseIsOpened} timeout="auto" unmountOnExit>
+              <Collapse in={collapseFirstIsOpened} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                   <ListItemButton
                     onClick={() => router.push('/member/create')}
@@ -147,6 +153,31 @@ export default function AppDrawer({ children }: AppDrawerProps) {
                       <AddIcon />
                     </ListItemIcon>
                     <ListItemText primary="Добавить сотрудника" />
+                  </ListItemButton>
+                </List>
+              </Collapse>
+
+              <ListItemButton onClick={handleSecondClick}>
+                <ListItemIcon>
+                  <PeopleIcon />
+                </ListItemIcon>
+                <ListItemText primary="Главная страница" />
+                {collapseSecondIsOpened ? <ExpandLess /> : <ExpandMore />}
+              </ListItemButton>
+              <Collapse
+                in={collapseSecondIsOpened}
+                timeout="auto"
+                unmountOnExit
+              >
+                <List component="div" disablePadding>
+                  <ListItemButton
+                    onClick={() => router.push('/home-page/news/create')}
+                    sx={{ pl: 4 }}
+                  >
+                    <ListItemIcon>
+                      <AddIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Добавить новость" />
                   </ListItemButton>
                 </List>
               </Collapse>
