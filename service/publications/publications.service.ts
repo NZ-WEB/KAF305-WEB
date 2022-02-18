@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { SERVER_BASE_URL } from '../../utils/constants';
-import { PublicationInterface } from '../../interfaces/publication.interface';
-import {FieldValues, UnpackNestedValue} from "react-hook-form";
+import { FieldValues, UnpackNestedValue } from 'react-hook-form';
 
 export default class PublicationsService {
   async create(data: UnpackNestedValue<FieldValues>, authorId: number) {

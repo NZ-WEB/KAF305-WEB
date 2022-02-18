@@ -7,7 +7,7 @@ import { useState } from 'react';
 import * as React from 'react';
 import { AppErrors } from '../../../src/components/AppErrors/AppErrors';
 import { AppFormErrorMessage } from '../../../src/components';
-import {MembersInterface} from "../../../interfaces/members.interface";
+import { MembersInterface } from '../../../interfaces/members.interface';
 
 const CreatePage = (): JSX.Element => {
   const membersService = new MembersService();

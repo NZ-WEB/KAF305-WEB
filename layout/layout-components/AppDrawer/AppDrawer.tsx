@@ -12,7 +12,6 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { AppDrawerProps } from './AppDrawer.props';
 import { useContext } from 'react';
 import { ListSubheader } from '@mui/material';
-import { useRouter } from 'next/router';
 import { AppContext } from '../../../context';
 import { TheAppBar } from '../../../src/components';
 import AppSideBarListItem from '../../../src/components/AppSideBarListItem/AppSideBarListItem';

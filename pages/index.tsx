@@ -4,11 +4,10 @@ import { withLayout } from '../layout/Layout';
 import { useEffect, useState } from 'react';
 import MembersService from '../service/members/members.service';
 import { MembersInterface } from '../interfaces/members.interface';
-import { Card, Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 import { TheMembersTable } from '../src/components/TheMembersTable/TheMembersTable';
 import { AppPageTitle } from '../src/components/AppPageTitle/AppPageTitle';
 import { AppErrors } from '../src/components/AppErrors/AppErrors';
-import { AppPublicationCard } from '../src/components/AppPublicationCard/AppPublicationCard';
 import { TheHomePageNews } from '../src/components/TheHomePageNews/TheHomePageNews';
 
 const Home: NextPage = () => {

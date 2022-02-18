@@ -3,7 +3,7 @@ import { Button, Card, CardContent } from '@mui/material';
 import { DataGrid, GridApi, GridCellValue, GridColDef } from '@mui/x-data-grid';
 import { useRouter } from 'next/router';
 import Typography from '@mui/material/Typography';
-import {MembersInterface} from "../../../interfaces/members.interface";
+import { MembersInterface } from '../../../interfaces/members.interface';
 
 export const TheMembersTable = ({
   members,

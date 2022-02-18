@@ -1,3 +1,3 @@
-import {CardProps} from "material-ui";
+import { CardProps } from 'material-ui';
 
-export interface TheHomePageNewsProps extends CardProps {}
+export type TheHomePageNewsProps = CardProps;

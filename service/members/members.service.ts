@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { SERVER_BASE_URL } from '../../utils/constants';
 import { MembersInterface } from '../../interfaces/members.interface';
-import {FieldValues, UnpackNestedValue} from "react-hook-form";
+import { FieldValues, UnpackNestedValue } from 'react-hook-form';
 
 export default class MembersService {
   async getAll() {
