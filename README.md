@@ -1,6 +1,8 @@
-# Next.js with TypeScript example
+# KAF305-Web
 
 ## How to use
+
+ERVER_BASE_URL - const from env
 
 Download the example [or clone the repo](https://github.com/mui-org/material-ui):
 
