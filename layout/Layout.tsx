@@ -15,14 +15,14 @@ export const withLayout = <T extends Record<string, unknown>>(
   Component: FunctionComponent<T>,
 ) => {
   return function withLayoutComponent(props: T): JSX.Element {
-    const [authorized] = useState<boolean>(
+    const [authorized, setAuthorized] = useState<boolean>(
       process.browser && (localStorage.getItem('user') ? true : false),
     );
 
     console.log(authorized, 'authorized');
 
     return (
-      <AppContextProvider auth={authorized}>
+      <AppContextProvider auth={authorized} setAuth={setAuthorized}>
         <Layuot authorized={authorized}>
           <Component {...props} />
         </Layuot>

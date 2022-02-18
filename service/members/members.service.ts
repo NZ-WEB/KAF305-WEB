@@ -1,9 +1,10 @@
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 import { SERVER_BASE_URL } from '../../utils/constants';
 import { MembersInterface } from '../../interfaces/members.interface';
+import {FieldValues, UnpackNestedValue} from "react-hook-form";
 
 export default class MembersService {
-  async getAll(): Promise<AxiosResponse> {
+  async getAll() {
     try {
       const response = await axios.get(`${SERVER_BASE_URL}/members`, {
         headers: {
@@ -16,7 +17,7 @@ export default class MembersService {
     }
   }
 
-  async getBySlug(slug: string): Promise<AxiosResponse> {
+  async getBySlug(slug: string) {
     try {
       const response = await axios.get(`${SERVER_BASE_URL}/members/${slug}`, {
         headers: {
@@ -29,7 +30,7 @@ export default class MembersService {
     }
   }
 
-  async create(data: MembersInterface): Promise<AxiosResponse> {
+  async create(data: MembersInterface) {
     try {
       const token = JSON.parse(localStorage.getItem('user')).token;
 
@@ -52,7 +53,7 @@ export default class MembersService {
     }
   }
 
-  async delete(slug: string): Promise<AxiosResponse> {
+  async delete(slug: string) {
     const token = JSON.parse(localStorage.getItem('user')).token;
     try {
       const response = await axios.delete(
@@ -72,7 +73,7 @@ export default class MembersService {
     }
   }
 
-  async update(data: MembersInterface, slug: string): Promise<AxiosResponse> {
+  async update(data: UnpackNestedValue<FieldValues>, slug: string) {
     const token = JSON.parse(localStorage.getItem('user')).token;
     try {
       const response = await axios.put(

@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 import { SERVER_BASE_URL } from '../../utils/constants';
 
 export interface ILoginData {
@@ -7,7 +7,7 @@ export interface ILoginData {
 }
 
 export default class UserService {
-  async login(loginData: ILoginData): Promise<AxiosResponse> {
+  async login(loginData: ILoginData) {
     try {
       const response = await axios.post(
         `${SERVER_BASE_URL}/users/login`,
@@ -25,7 +25,7 @@ export default class UserService {
     }
   }
 
-  async register(loginData: ILoginData): Promise<AxiosResponse> {
+  async register(loginData: ILoginData) {
     try {
       const response = await axios.post(
         `${SERVER_BASE_URL}/users`,

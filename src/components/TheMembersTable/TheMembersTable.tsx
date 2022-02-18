@@ -3,6 +3,7 @@ import { Button, Card, CardContent } from '@mui/material';
 import { DataGrid, GridApi, GridCellValue, GridColDef } from '@mui/x-data-grid';
 import { useRouter } from 'next/router';
 import Typography from '@mui/material/Typography';
+import {MembersInterface} from "../../../interfaces/members.interface";
 
 export const TheMembersTable = ({
   members,
@@ -44,7 +45,7 @@ export const TheMembersTable = ({
             );
 
           const [{ slug }] = members.filter(
-            (member) => member.id === thisRow.id,
+            (member: MembersInterface) => member.id === thisRow.id,
           );
 
           return router.push(`/member/${slug}`);
@@ -57,7 +58,7 @@ export const TheMembersTable = ({
 
   const rows = [];
 
-  members.forEach((member) => {
+  members.forEach((member: MembersInterface) => {
     rows.push({
       id: member.id,
       fullName: member.fullName,

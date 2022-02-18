@@ -4,7 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Typography from '@mui/material/Typography';
 import { AccountCircle } from '@mui/icons-material';
-import { AppBar, Menu, MenuItem } from '@mui/material';
+import { Menu, MenuItem } from '@mui/material';
 import Link from 'next/link';
 import Button from '@mui/material/Button';
 import * as React from 'react';
@@ -121,7 +121,7 @@ export const TheAppBar = ({
           </div>
         ) : (
           <Link href={`/login`}>
-            <Button color="white" variant="outlined">
+            <Button color="secondary" variant="outlined">
               Войти
             </Button>
           </Link>

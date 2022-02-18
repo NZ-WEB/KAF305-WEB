@@ -41,7 +41,7 @@ export const AppPublicationCard = ({
       .delete(publicationState.slug)
       .then((res) => console.log(res, 'deleted'))
       .then(() => router.push(`/`))
-      .catch((e) => setErrors(...errors, e));
+      .catch((e) => setErrors([...errors, e]));
   };
 
   return (

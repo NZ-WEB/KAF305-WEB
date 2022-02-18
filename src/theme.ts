@@ -8,9 +8,6 @@ const theme = createTheme({
       main: '#008ad1',
     },
     secondary: {
-      main: '#005bd1',
-    },
-    white: {
       main: '#fff',
     },
     error: {

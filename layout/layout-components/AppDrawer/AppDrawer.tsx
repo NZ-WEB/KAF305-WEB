@@ -75,7 +75,7 @@ export default function AppDrawer({ children }: AppDrawerProps) {
       <TheAppBar
         handleDrawerOpen={() => handleDrawerOpen()}
         auth={auth}
-        setAuth={() => setAuth()}
+        setAuth={setAuth}
         open={open}
       />
 

@@ -1,12 +1,10 @@
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 import { SERVER_BASE_URL } from '../../utils/constants';
 import { PublicationInterface } from '../../interfaces/publication.interface';
+import {FieldValues, UnpackNestedValue} from "react-hook-form";
 
 export default class PublicationsService {
-  async create(
-    data: PublicationInterface,
-    authorId: number,
-  ): Promise<AxiosResponse> {
+  async create(data: UnpackNestedValue<FieldValues>, authorId: number) {
     try {
       const token = JSON.parse(localStorage.getItem('user')).token;
 
@@ -51,7 +49,7 @@ export default class PublicationsService {
     }
   }
 
-  async delete(slug: string): Promise<AxiosResponse> {
+  async delete(slug: string) {
     const token = JSON.parse(localStorage.getItem('user')).token;
     try {
       return await axios.delete(`${SERVER_BASE_URL}/publications/${slug}`, {

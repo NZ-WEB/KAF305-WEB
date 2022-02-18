@@ -7,6 +7,7 @@ import { useState } from 'react';
 import * as React from 'react';
 import { AppErrors } from '../../../src/components/AppErrors/AppErrors';
 import { AppFormErrorMessage } from '../../../src/components';
+import {MembersInterface} from "../../../interfaces/members.interface";
 
 const CreatePage = (): JSX.Element => {
   const membersService = new MembersService();
@@ -18,7 +19,7 @@ const CreatePage = (): JSX.Element => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = handleSubmit((data) =>
+  const onSubmit = handleSubmit((data: MembersInterface) =>
     membersService
       .create(data)
       .then(() => router.push(`/`))
