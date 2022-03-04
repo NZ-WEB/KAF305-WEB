@@ -1,7 +1,6 @@
 import { AppProfileCardProps } from './AppProfileCard.props';
 import {
   Button,
-  Card,
   CardActions,
   CardContent,
   CardHeader,
@@ -22,6 +21,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { styled } from '@mui/material/styles';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import { AppProfileExpanded } from '../AppProfileExpanded/AppProfileExpanded';
+import { AppCard } from '../AppCard/AppCard';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -86,7 +86,7 @@ export const AppProfileCard = ({
   };
 
   return (
-    <Card variant={'outlined'} {...props}>
+    <AppCard {...props}>
       <CardHeader
         avatar={
           member.avatar !== '' ? (
@@ -243,29 +243,6 @@ export const AppProfileCard = ({
           <ExpandMoreIcon />
         </ExpandMore>
       </CardActions>
-      {/*<Collapse in={expanded} timeout="auto" unmountOnExit>*/}
-      {/*  <CardContent>*/}
-      {/*    <Typography variant={'h6'}>Публикации</Typography>*/}
-      {/*  </CardContent>*/}
-
-      {/*  {member.publications &&*/}
-      {/*    member.publications.map((publication) => {*/}
-      {/*      return (*/}
-      {/*        <AppPublicationCard*/}
-      {/*          errors={errors}*/}
-      {/*          setErrors={setErrors}*/}
-      {/*          auth={auth}*/}
-      {/*          publication={publication}*/}
-      {/*        />*/}
-      {/*      );*/}
-      {/*    })}*/}
-
-      {/*  {auth && (*/}
-      {/*    <IconButton onClick={() => }>*/}
-      {/*      <AddIcon />*/}
-      {/*    </IconButton>*/}
-      {/*  )}*/}
-      {/*</Collapse>*/}
       <AppProfileExpanded
         expanded={expanded}
         errors={errors}
@@ -273,6 +250,6 @@ export const AppProfileCard = ({
         setErrors={setErrors}
         member={member}
       />
-    </Card>
+    </AppCard>
   );
 };

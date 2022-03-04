@@ -5,10 +5,10 @@ import { useEffect, useState } from 'react';
 import MembersService from '../service/members/members.service';
 import { MembersInterface } from '../interfaces/members.interface';
 import { Grid } from '@mui/material';
-import { TheMembersTable } from '../src/components/TheMembersTable/TheMembersTable';
 import { AppPageTitle } from '../src/components/AppPageTitle/AppPageTitle';
 import { AppErrors } from '../src/components/AppErrors/AppErrors';
 import { TheHomePageNews } from '../src/components/TheHomePageNews/TheHomePageNews';
+import { TheMembersList } from '../src/components/TheMembersList/TheMembersList';
 
 const Home: NextPage = () => {
   const [errors, setErrors] = useState([]);
@@ -44,7 +44,7 @@ const Home: NextPage = () => {
       </Grid>
 
       <Grid item xs={6}>
-        {members && <TheMembersTable members={members} />}
+        {members && <TheMembersList members={members} />}
       </Grid>
     </Grid>
   );

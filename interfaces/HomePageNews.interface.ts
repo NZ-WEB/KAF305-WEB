@@ -1,5 +1,5 @@
 export interface HomePageNewsInterface {
-  id: number;
+  id?: number;
   title: string;
   text: number;
   icon: string;

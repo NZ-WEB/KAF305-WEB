@@ -1,11 +1,15 @@
-import { Card } from '@mui/material';
+import { CardActions, Grid } from '@mui/material';
 import { TheHomePageNewsProps } from './TheHomePageNews.props';
 import IconButton from '@mui/material/IconButton';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import HomePageNewsService from '../../../service/homePage/news/HomePageNews.service';
 import Typography from '@mui/material/Typography';
+import { AppModal } from '../AppModal/AppModal';
+import { HomePageNewsInterface } from '../../../interfaces/HomePageNews.interface';
+import { AppCard } from '../AppCard/AppCard';
+import { AppContext } from '../../../context';
 
 export const TheHomePageNews = ({
   ...props
@@ -13,6 +17,7 @@ export const TheHomePageNews = ({
   const newsService = new HomePageNewsService();
   const [slideCount, setSlideCount] = useState<number>(0);
   const [news, setNews] = useState([]);
+  const { auth } = useContext(AppContext);
 
   const setNewConditionOfSlide = (action: 'inc' | 'dec') => {
     switch (action) {
@@ -33,30 +38,63 @@ export const TheHomePageNews = ({
     }
   };
 
+  const deleteNews = (newsData: HomePageNewsInterface) => {
+    newsService
+      .deleteById(newsData.id)
+      .then(() => {
+        setNews(news.filter((item) => item.id !== newsData.id));
+      })
+      .catch((e) => console.log(e));
+  };
+
   useEffect(() => {
     newsService
       .getAll()
       .then((news) => setNews(news))
-      .then((i) => console.log(i, 'i'))
       .catch((e) => console.log(e));
   }, []);
 
   return (
-    <Card {...props}>
-      <IconButton onClick={() => setNewConditionOfSlide('dec')}>
-        <ArrowBackIcon />
-      </IconButton>
-      <div>
-        {news.length && (
+    <AppCard {...props}>
+      <Grid container>
+        <Grid item sm={2}>
+          <IconButton onClick={() => setNewConditionOfSlide('dec')}>
+            <ArrowBackIcon />
+          </IconButton>
+        </Grid>
+        <Grid item sm={2}>
+          <IconButton onClick={() => setNewConditionOfSlide('inc')}>
+            <ArrowForwardIcon />
+          </IconButton>
+        </Grid>
+        <Grid item sm={12}>
           <div>
-            <Typography>{news[slideCount].title}</Typography>
+            {news.length && (
+              <Grid padding={'1em'} container direction="column">
+                <Grid item>
+                  <Typography variant={'h6'}>
+                    {news[slideCount].title}
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Typography>{news[slideCount].text}</Typography>
+                </Grid>
+              </Grid>
+            )}
           </div>
+        </Grid>
+      </Grid>
+      <CardActions>
+        {auth && (
+          <AppModal
+            withButton
+            btnText="Удалить"
+            title="Вы действительно хотите удалить эту новость?"
+            subtitle="Это действие нельзя будет отменить"
+            handle={() => deleteNews(news[slideCount])}
+          />
         )}
-      </div>
-
-      <IconButton onClick={() => setNewConditionOfSlide('inc')}>
-        <ArrowForwardIcon />
-      </IconButton>
-    </Card>
+      </CardActions>
+    </AppCard>
   );
 };

@@ -1,5 +1,5 @@
 import { withLayout } from '../../../layout/Layout';
-import { Button, Card, CardContent, Typography } from '@mui/material';
+import { Button, CardContent, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import MembersService from '../../../service/members/members.service';
 import { useRouter } from 'next/router';
@@ -8,6 +8,7 @@ import * as React from 'react';
 import { AppErrors } from '../../../src/components/AppErrors/AppErrors';
 import { AppFormErrorMessage } from '../../../src/components';
 import { MembersInterface } from '../../../interfaces/members.interface';
+import { AppCard } from '../../../src/components/AppCard/AppCard';
 
 const CreatePage = (): JSX.Element => {
   const membersService = new MembersService();
@@ -28,12 +29,12 @@ const CreatePage = (): JSX.Element => {
 
   return (
     <div>
-      <Card>
-        <CardContent>
-          {errorsState.length > 0 && <AppErrors errors={errorsState} />}
-        </CardContent>
-      </Card>
-      <Card>
+      {errorsState.length > 0 && (
+        <AppCard>
+          <CardContent>{<AppErrors errors={errorsState} />}</CardContent>
+        </AppCard>
+      )}
+      <AppCard>
         <CardContent>
           <form onSubmit={onSubmit}>
             <Typography variant={'h4'}>Добавить сотрудника кафедры</Typography>
@@ -186,7 +187,7 @@ const CreatePage = (): JSX.Element => {
             </Button>
           </form>
         </CardContent>
-      </Card>
+      </AppCard>
     </div>
   );
 };

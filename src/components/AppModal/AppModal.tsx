@@ -28,9 +28,10 @@ const Backdrop = styled('div')`
 `;
 
 const style = {
-  width: 400,
+  width: '50wh',
   bgcolor: 'background.paper',
-  border: '2px solid #000',
+  border: 'none',
+  borderRadius: '1em',
   p: 2,
   px: 4,
   pb: 3,
@@ -47,11 +48,16 @@ export const AppModal = ({
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const handleClick = () => {
+    handle();
+    handleClose();
+  };
+
   return (
     <div>
-      <button type="button" onClick={handleOpen}>
+      <Button type="button" variant="contained" onClick={handleOpen}>
         {btnText}
-      </button>
+      </Button>
       <StyledModal
         aria-labelledby="unstyled-modal-title"
         aria-describedby="unstyled-modal-description"
@@ -63,7 +69,7 @@ export const AppModal = ({
           <h2 id="unstyled-modal-title">{title}</h2>
           <p id="unstyled-modal-description">{subtitle}</p>
           {withButton && (
-            <Button onClick={() => handle()} type="button" color="warning">
+            <Button onClick={() => handleClick()} type="button" color="warning">
               {btnText}
             </Button>
           )}

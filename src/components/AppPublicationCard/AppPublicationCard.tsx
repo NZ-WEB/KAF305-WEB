@@ -1,5 +1,5 @@
 import { AppPublicationCardProps } from './AppPublicationCard.props';
-import { Card, CardContent, CardHeader, Input } from '@mui/material';
+import { CardContent, CardHeader, Input } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
@@ -11,6 +11,7 @@ import { PublicationInterface } from '../../../interfaces/publication.interface'
 import { AppModal } from '../AppModal/AppModal';
 import * as React from 'react';
 import { useRouter } from 'next/router';
+import { AppCard } from '../AppCard/AppCard';
 
 export const AppPublicationCard = ({
   publication,
@@ -45,7 +46,7 @@ export const AppPublicationCard = ({
   };
 
   return (
-    <Card variant={'outlined'} {...props}>
+    <AppCard {...props}>
       <form onSubmit={onSubmit}>
         <CardHeader
           title={
@@ -118,6 +119,6 @@ export const AppPublicationCard = ({
           )}
         </CardContent>
       </form>
-    </Card>
+    </AppCard>
   );
 };

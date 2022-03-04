@@ -1,10 +1,11 @@
 import { withLayout } from '../../layout/Layout';
 import { useForm } from 'react-hook-form';
-import { Alert, Card, CardContent } from '@mui/material';
+import { Alert, CardContent } from '@mui/material';
 import * as React from 'react';
 import { useState } from 'react';
 import UserService from '../../service/user/user.service';
 import { useRouter } from 'next/router';
+import { AppCard } from '../../src/components/AppCard/AppCard';
 
 const RegisterSecr = (): JSX.Element => {
   const [errorsState, setErrorsState] = useState([]);
@@ -24,7 +25,7 @@ const RegisterSecr = (): JSX.Element => {
   );
 
   return (
-    <Card>
+    <AppCard>
       <CardContent>
         {errorsState.length > 0 &&
           errorsState.map((error) => (
@@ -59,7 +60,7 @@ const RegisterSecr = (): JSX.Element => {
           <button type="submit">Зарегестрировать</button>
         </form>
       </CardContent>
-    </Card>
+    </AppCard>
   );
 };
 

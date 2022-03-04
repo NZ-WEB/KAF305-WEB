@@ -1,0 +1,12 @@
+{
+  "/_app": "pages/_app.js",
+  "/home-page/news/create": "pages/home-page/news/create.html",
+  "/": "pages/index.html",
+  "/login": "pages/login.html",
+  "/member/[slug]": "pages/member/[slug].html",
+  "/member/create": "pages/member/create.html",
+  "/registerSecr": "pages/registerSecr.html",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/404": "pages/404.html"
+}

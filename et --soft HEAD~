@@ -1,0 +1,173 @@
+[33mcommit b1a39545b0de26ab5a6c374ab9ea450469650903[m[33m ([m[1;36mHEAD -> [m[1;32mdeploy[m[33m)[m
+Author: NZ-WEB <stereo00@yandex.ru>
+Date:   Fri Mar 4 11:28:50 2022 +0300
+
+    Build 4 VPS
+
+[33mcommit 48e238f53ad46a6c9e9bbe4112db4d1d7785d76a[m[33m ([m[1;32mmaster[m[33m)[m
+Author: NZ-WEB <stereo00@yandex.ru>
+Date:   Fri Mar 4 11:13:54 2022 +0300
+
+    Build 4 deploy on VPS
+
+[33mcommit e1f80bbf1307e317411572b837b72f3aa7fd0a0b[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: NZ-WEB <stereo00@yandex.ru>
+Date:   Fri Feb 18 10:35:59 2022 +0300
+
+    Edit dockerfile
+
+[33mcommit 40876f31d9c3ae37dc781942515885846916163c[m
+Author: NZ-WEB <stereo00@yandex.ru>
+Date:   Fri Feb 18 09:31:55 2022 +0300
+
+    Added Dockerfile
+
+[33mcommit 2b03efdb7705fe988087f52f3a87788c88bde83d[m
+Author: NZ-WEB <stereo00@yandex.ru>
+Date:   Fri Feb 18 09:24:06 2022 +0300
+
+    Preparing for build && fix Eslint
+
+[33mcommit 0f5f0c43625df3de08142947a73c2f39c1cf4981[m
+Author: NZ-WEB <stereo00@yandex.ru>
+Date:   Fri Feb 18 09:19:51 2022 +0300
+
+    FIX ts strict mode problems
+
+[33mcommit 5087c9b81ed294d93f409a0f9a48cfd1d2f7f947[m
+Author: NZ-WEB <stereo00@yandex.ru>
+Date:   Mon Feb 14 17:37:55 2022 +0300
+
+    Added homePage news carusel in index page
+
+[33mcommit c8502645d28cadb455dc05a659659035669aff50[m
+Author: NZ-WEB <stereo00@yandex.ru>
+Date:   Mon Feb 14 16:24:11 2022 +0300
+
+    Added AppSideBarListItem component && refactor AppDrawer component
+
+[33mcommit df4e29b2a8bc707388cead8e268234d011af42d3[m
+Author: NZ-WEB <stereo00@yandex.ru>
+Date:   Mon Feb 14 15:58:10 2022 +0300
+
+    Added home-page && homePageNews && create home page news
+
+[33mcommit 2116eb395693b19acb92c06b1fb073128c10f75e[m
+Author: NZ-WEB <stereo00@yandex.ru>
+Date:   Tue Feb 1 13:47:39 2022 +0300
+
+    FINISH publications logic
+
+[33mcommit a32cc266c93e7e50f0ff16b7c2dcec0e7b805037[m
+Author: NZ-WEB <stereo00@yandex.ru>
+Date:   Tue Feb 1 12:15:17 2022 +0300
+
+    Added update publications
+
+[33mcommit 5e18f2eed5ebd51008579da61c38ff192c3c45c9[m
+Author: NZ-WEB <stereo00@yandex.ru>
+Date:   Tue Feb 1 11:26:33 2022 +0300
+
+    Added displaying editing publications
+
+[33mcommit 9037467c0ca93a820f08c147d72fdb3fbb917930[m
+Author: NZ-WEB <stereo00@yandex.ru>
+Date:   Mon Jan 31 14:36:47 2022 +0300
+
+    Addd displaying publications
+
+[33mcommit 04d7e2d491ba53b7ffc2054f114855850daa0aeb[m
+Author: NZ-WEB <stereo00@yandex.ru>
+Date:   Mon Jan 31 14:00:46 2022 +0300
+
+    FIX types
+
+[33mcommit 323e3fb007e3d62533513aef9f2b890318b48d81[m
+Author: NZ-WEB <stereo00@yandex.ru>
+Date:   Mon Jan 31 13:39:35 2022 +0300
+
+    Refactor arch
+
+[33mcommit 195743c151dc8b55c5117326966baa65771f0b58[m
+Author: NZ-WEB <stereo00@yandex.ru>
+Date:   Fri Jan 28 20:16:48 2022 +0300
+
+    FIX eslint bags
+
+[33mcommit 152d263489bd5f21da0e7890cde7c11d4f965d33[m
+Author: NZ-WEB <stereo00@yandex.ru>
+Date:   Wed Jan 26 12:35:32 2022 +0300
+
+    Added reg user
+
+[33mcommit ac3666973b11c979f318f032a88db1cb924fd1e7[m
+Author: NZ-WEB <stereo00@yandex.ru>
+Date:   Mon Jan 24 17:05:05 2022 +0300
+
+    Added delete members
+
+[33mcommit 858aa6a298b37946586a23565ad660a27c27a6ac[m
+Author: NZ-WEB <stereo00@yandex.ru>
+Date:   Mon Jan 24 16:33:47 2022 +0300
+
+    Added create member page
+
+[33mcommit daad8678e58a8c21d63e00ad3d3f4a7f20e9c386[m
+Author: NZ-WEB <stereo00@yandex.ru>
+Date:   Mon Jan 24 15:05:15 2022 +0300
+
+    Added update member data
+
+[33mcommit 08660af9498a2fe423f6989b0ab059b411828f09[m
+Author: NZ-WEB <stereo00@yandex.ru>
+Date:   Mon Jan 24 14:32:36 2022 +0300
+
+    Added AppMemberInfoField component
+
+[33mcommit fdbbfeb5ef34910e01dd55b1265b105b7bbf64b5[m
+Author: NZ-WEB <stereo00@yandex.ru>
+Date:   Mon Jan 24 13:56:35 2022 +0300
+
+    Fixed context
+
+[33mcommit 6b260785066ef3e51dba2538c63ffc0e5156daef[m
+Author: NZ-WEB <stereo00@yandex.ru>
+Date:   Mon Jan 24 12:21:02 2022 +0300
+
+    Added AppContext: auth
+
+[33mcommit 2d3e4e3608fff764192b228735c8be482a99b8c0[m
+Author: NZ-WEB <stereo00@yandex.ru>
+Date:   Mon Jan 24 11:38:33 2022 +0300
+
+    added members pages
+
+[33mcommit 7fb38a182dc1d5a2ed404bbfebca1bbda0267929[m
+Author: NZ-WEB <stereo00@yandex.ru>
+Date:   Sun Jan 23 14:09:06 2022 +0300
+
+    Added login page && auth
+
+[33mcommit ebd30b052410fd2844b19b086ea8b8e039c1c2f6[m
+Author: NZ-WEB <stereo00@yandex.ru>
+Date:   Sun Jan 23 12:57:06 2022 +0300
+
+    Added membersList service && added displaying membersList in index page
+
+[33mcommit 135f1a0b77452bd8912faca0fdca3a4d1e821e39[m
+Author: NZ-WEB <stereo00@yandex.ru>
+Date:   Thu Jan 20 17:35:22 2022 +0300
+
+    Added SERVER_BASE_URL - const
+
+[33mcommit 9bbd83f72bc3b831ebd198f16f478a0de3966965[m
+Author: NZ-WEB <stereo00@yandex.ru>
+Date:   Thu Jan 20 16:50:34 2022 +0300
+
+    Added base layout, created base arch
+
+[33mcommit 7a0ea2e690d61d73bb2ea90650b3bd2d41f99fa7[m
+Author: NZ-WEB <stereo00@yandex.ru>
+Date:   Wed Jan 19 16:41:05 2022 +0300
+
+    INIT
