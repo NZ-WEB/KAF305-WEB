@@ -1,12 +1,17 @@
 import { withLayout } from '../../../layout/Layout';
-import { Button, CardContent, Typography } from '@mui/material';
+import {
+  Button,
+  CardContent,
+  CardHeader,
+  Grid,
+  TextField,
+} from '@mui/material';
 import { useForm } from 'react-hook-form';
 import MembersService from '../../../service/members/members.service';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import * as React from 'react';
 import { AppErrors } from '../../../src/components/AppErrors/AppErrors';
-import { AppFormErrorMessage } from '../../../src/components';
 import { MembersInterface } from '../../../interfaces/members.interface';
 import { AppCard } from '../../../src/components/AppCard/AppCard';
 
@@ -28,167 +33,185 @@ const CreatePage = (): JSX.Element => {
   );
 
   return (
-    <div>
-      {errorsState.length > 0 && (
+    <Grid container justifyContent="center">
+      <Grid item xs={12} md={6}>
         <AppCard>
-          <CardContent>{<AppErrors errors={errorsState} />}</CardContent>
+          {errorsState.length > 0 && (
+            <AppCard>
+              <CardContent>{<AppErrors errors={errorsState} />}</CardContent>
+            </AppCard>
+          )}
         </AppCard>
-      )}
-      <AppCard>
-        <CardContent>
-          <form onSubmit={onSubmit}>
-            <Typography variant={'h4'}>Добавить сотрудника кафедры</Typography>
-            <div>
-              <label htmlFor="fullName">
-                Полное имя:{' '}
-                <input
-                  {...register('fullName', { required: true })}
-                  name="fullName"
-                  type="text"
-                />
-              </label>
-              {errors.fullName && (
-                <AppFormErrorMessage text="Это поле обязательно" />
-              )}
-            </div>
-            <div>
-              <label htmlFor="post">
-                Должность:{' '}
-                <input
-                  {...register('post', { required: true })}
-                  name="post"
-                  type="text"
-                />
-                {errors.post && (
-                  <AppFormErrorMessage text="Это поле обязательно" />
-                )}
-              </label>
-            </div>
-            <div>
-              <label htmlFor="disciplines">
-                Дисциплины:{' '}
-                <input
-                  {...register('disciplines', { required: true })}
-                  name="disciplines"
-                  type="text"
-                />
-                {errors.disciplines && (
-                  <AppFormErrorMessage text="Это поле обязательно" />
-                )}
-              </label>
-            </div>
-            <div>
-              <label htmlFor="education">
-                Образование:{' '}
-                <input
-                  {...register('education', { required: true })}
-                  name="education"
-                  type="text"
-                />
-                {errors.education && (
-                  <AppFormErrorMessage text="Это поле обязательно" />
-                )}
-              </label>
-            </div>
-            <div>
-              <label htmlFor="qualification">
-                Квалификация:{' '}
-                <input
-                  {...register('qualification', { required: true })}
-                  name="qualification"
-                  type="text"
-                />
-                {errors.qualification && (
-                  <AppFormErrorMessage text="Это поле обязательно" />
-                )}
-              </label>
-            </div>
-            <div>
-              <label htmlFor="academicDegree">
-                Кандидатская степень:{' '}
-                <input
-                  {...register('academicDegree', { required: true })}
-                  name="academicDegree"
-                  type="text"
-                />
-                {errors.academicDegree && (
-                  <AppFormErrorMessage text="Это поле обязательно" />
-                )}
-              </label>
-            </div>
-            <div>
-              <label htmlFor="specialties">
-                Специальность:{' '}
-                <input
-                  {...register('specialties', { required: true })}
-                  name="specialties"
-                  type="text"
-                />
-                {errors.specialties && (
-                  <AppFormErrorMessage text="Это поле обязательно" />
-                )}
-              </label>
-            </div>
+      </Grid>
+      <Grid item xs={12} md={7}>
+        <AppCard sx={{ padding: '0.5em' }}>
+          <CardHeader title="Добавить сотрудника кафедры" />
+          <CardContent>
+            <form onSubmit={onSubmit}>
+              <TextField
+                margin="dense"
+                fullWidth
+                error={errors.fullName}
+                id="fullName"
+                label="Ф.И.О. сотрудника"
+                variant="outlined"
+                helperText={
+                  errors.fullName ? 'Это поле обязательно к заполнению' : ''
+                }
+                {...register('fullName', { required: true })}
+              />
 
-            <div>
-              <label htmlFor="advancedTraining">
-                Повышение квалификации:{' '}
-                <input
-                  {...register('advancedTraining', { required: true })}
-                  name="advancedTraining"
-                  type="text"
-                />
-                {errors.advancedTraining && (
-                  <AppFormErrorMessage text="Это поле обязательно" />
-                )}
-              </label>
-            </div>
-            <div>
-              <label htmlFor="specGuardian">
-                Стаж работы по специальности:{' '}
-                <input
-                  {...register('specGuardian', { required: true })}
-                  name="specGuardian"
-                  type="text"
-                />
-                {errors.specGuardian && (
-                  <AppFormErrorMessage text="Это поле обязательно" />
-                )}
-              </label>
-            </div>
-            <div>
-              <label htmlFor="totalGuardian">
-                Рабочий стаж:{' '}
-                <input
-                  {...register('totalGuardian', { required: true })}
-                  name="totalGuardian"
-                  type="text"
-                />
-                {errors.totalGuardian && (
-                  <AppFormErrorMessage text="Это поле обязательно" />
-                )}
-              </label>
-            </div>
-            <div>
-              <label htmlFor="avatar">
-                Аватар:{' '}
-                <input
-                  {...register('avatar', { required: true })}
-                  name="avatar"
-                  type="text"
-                />
-                {errors.avatar && (
-                  <AppFormErrorMessage text="Это поле обязательно" />
-                )}
-              </label>
-            </div>
-            <Button type="submit" variant="contained">
-              Создать
-            </Button>
-          </form>
-        </CardContent>
-      </AppCard>
-    </div>
+              <TextField
+                margin="dense"
+                fullWidth
+                error={errors.post}
+                id="post"
+                label="Должность"
+                variant="outlined"
+                helperText={
+                  errors.post ? 'Это поле обязательно к заполнению' : ''
+                }
+                {...register('post', { required: true })}
+              />
+
+              <TextField
+                margin="dense"
+                fullWidth
+                error={errors.disciplines}
+                id="disciplines"
+                label="Дисциплины"
+                variant="outlined"
+                helperText={
+                  errors.disciplines ? 'Это поле обязательно к заполнению' : ''
+                }
+                {...register('disciplines', { required: true })}
+              />
+
+              <TextField
+                margin="dense"
+                fullWidth
+                error={errors.education}
+                id="education"
+                label="Образование"
+                variant="outlined"
+                helperText={
+                  errors.education ? 'Это поле обязательно к заполнению' : ''
+                }
+                {...register('education', { required: true })}
+              />
+
+              <TextField
+                margin="dense"
+                fullWidth
+                error={errors.qualification}
+                id="qualification"
+                label="Квалификация"
+                variant="outlined"
+                helperText={
+                  errors.qualification
+                    ? 'Это поле обязательно к заполнению'
+                    : ''
+                }
+                {...register('qualification', { required: true })}
+              />
+
+              <TextField
+                margin="dense"
+                fullWidth
+                error={errors.academicDegree}
+                id="academicDegree"
+                label="Кандидатская степень"
+                variant="outlined"
+                helperText={
+                  errors.academicDegree
+                    ? 'Это поле обязательно к заполнению'
+                    : ''
+                }
+                {...register('academicDegree', { required: true })}
+              />
+
+              <TextField
+                margin="dense"
+                fullWidth
+                error={errors.specialties}
+                id="specialties"
+                label="Специальность"
+                variant="outlined"
+                helperText={
+                  errors.specialties ? 'Это поле обязательно к заполнению' : ''
+                }
+                {...register('specialties', { required: true })}
+              />
+
+              <TextField
+                margin="dense"
+                fullWidth
+                error={errors.advancedTraining}
+                id="advancedTraining"
+                label="Повышение квалификации"
+                variant="outlined"
+                helperText={
+                  errors.advancedTraining
+                    ? 'Это поле обязательно к заполнению'
+                    : ''
+                }
+                {...register('advancedTraining', { required: true })}
+              />
+
+              <TextField
+                margin="dense"
+                fullWidth
+                error={errors.specGuardian}
+                id="specGuardian"
+                label="Стаж работы по специальность"
+                variant="outlined"
+                helperText={
+                  errors.specGuardian ? 'Это поле обязательно к заполнению' : ''
+                }
+                {...register('specGuardian', { required: true })}
+              />
+
+              <TextField
+                margin="dense"
+                fullWidth
+                error={errors.totalGuardian}
+                id="totalGuardian"
+                label="Общий стаж работы"
+                variant="outlined"
+                helperText={
+                  errors.totalGuardian
+                    ? 'Это поле обязательно к заполнению'
+                    : ''
+                }
+                {...register('totalGuardian', { required: true })}
+              />
+
+              <TextField
+                margin="dense"
+                fullWidth
+                error={errors.avatar}
+                id="avatar"
+                label="Аватар"
+                variant="outlined"
+                helperText={
+                  errors.avatar ? 'Это поле обязательно к заполнению' : ''
+                }
+                {...register('avatar', { required: true })}
+              />
+
+              <Button
+                sx={{ marginTop: '0.5em' }}
+                fullWidth
+                type="submit"
+                variant="contained"
+              >
+                Создать
+              </Button>
+            </form>
+          </CardContent>
+        </AppCard>
+      </Grid>
+    </Grid>
   );
 };
 
