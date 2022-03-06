@@ -11,7 +11,7 @@ export const AppPageTitle = ({
   return (
     <AppCard {...props}>
       <CardContent>
-        <Typography variant={'h3'}>{title}</Typography>
+        <Typography variant={'h6'}>{title}</Typography>
         <Typography variant={'subtitle1'}>{description}</Typography>
       </CardContent>
     </AppCard>

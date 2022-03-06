@@ -58,34 +58,34 @@ export const TheHomePageNews = ({
   return (
     <AppCard {...props}>
       <Grid container>
-        <Grid item sm={2}>
-          <IconButton onClick={() => setNewConditionOfSlide('dec')}>
-            <ArrowBackIcon />
-          </IconButton>
-        </Grid>
-        <Grid item sm={2}>
-          <IconButton onClick={() => setNewConditionOfSlide('inc')}>
-            <ArrowForwardIcon />
-          </IconButton>
-        </Grid>
         <Grid item sm={12}>
           <div>
             {news.length && (
-              <Grid padding={'1em'} container direction="column">
+              <Grid padding={'1em'} container gap={1} direction="column">
                 <Grid item>
                   <Typography variant={'h6'}>
                     {news[slideCount].title}
                   </Typography>
                 </Grid>
                 <Grid item>
-                  <Typography>{news[slideCount].text}</Typography>
+                  <Typography variant="body1">
+                    {news[slideCount].text}
+                  </Typography>
                 </Grid>
               </Grid>
             )}
           </div>
         </Grid>
       </Grid>
-      <CardActions>
+      <CardActions sx={{ padding: '1em' }}>
+        <IconButton onClick={() => setNewConditionOfSlide('dec')}>
+          <ArrowBackIcon />
+        </IconButton>
+
+        <IconButton onClick={() => setNewConditionOfSlide('inc')}>
+          <ArrowForwardIcon />
+        </IconButton>
+
         {auth && (
           <AppModal
             withButton

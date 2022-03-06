@@ -1,12 +1,17 @@
 import { TheMembersListProps } from './TheMembersList.props';
 import { AppCard } from '../AppCard/AppCard';
-import List from '@mui/material/List';
-import { ListItem, ListItemButton, Pagination } from '@mui/material';
+import {
+  CardActions,
+  CardContent,
+  ListItem,
+  ListItemButton,
+  Pagination,
+  Typography,
+} from '@mui/material';
 import { MembersInterface } from '../../../interfaces/members.interface';
-import { useRouter } from 'next/router';
-import Divider from '@mui/material/Divider';
 import { useEffect, useState } from 'react';
-import Typography from '@mui/material/Typography';
+import Link from 'next/link';
+import List from '@mui/material/List';
 
 export const TheMembersList = ({
   members,
@@ -14,7 +19,6 @@ export const TheMembersList = ({
   const MEMBERS_ON_PAGE = 5;
   console.log(members.length, 'start');
 
-  const router = useRouter();
   const [page, setPage] = useState(1);
 
   const [computePaginatedMembers, setComputePaginatedMembers] = useState([]);
@@ -41,25 +45,28 @@ export const TheMembersList = ({
 
   return (
     <AppCard>
-      <Typography variant="h6">Сотрудники кафедры</Typography>
-      <List>
-        {members &&
-          computePaginatedMembers.map((member: MembersInterface) => (
-            <ListItem disablePadding key={member.id}>
-              <ListItemButton
-                onClick={() => router.push(`/member/${member.slug}`)}
-              >
-                {member.fullName}
-              </ListItemButton>
-              <Divider />
-            </ListItem>
-          ))}
-      </List>
-      <Pagination
-        count={getPaginationCount(MEMBERS_ON_PAGE)}
-        page={page}
-        onChange={handleChange}
-      />
+      <CardContent>
+        <Typography variant="h6" paddingBottom="1em">
+          Сотрудники кафедры
+        </Typography>
+        <List>
+          {members &&
+            computePaginatedMembers.map((member: MembersInterface) => (
+              <ListItem sx={{ padding: '0' }}>
+                <Link href={`/member/${member.slug}`} key={member.id}>
+                  <ListItemButton>{member.fullName}</ListItemButton>
+                </Link>
+              </ListItem>
+            ))}
+        </List>
+      </CardContent>
+      <CardActions>
+        <Pagination
+          count={getPaginationCount(MEMBERS_ON_PAGE)}
+          page={page}
+          onChange={handleChange}
+        />
+      </CardActions>
     </AppCard>
   );
 };

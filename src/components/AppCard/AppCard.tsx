@@ -5,7 +5,6 @@ const style = {
   borderRadius: '1em',
   bgcolor: 'background.paper',
   border: 'none',
-  padding: '1.5em',
 };
 
 export const AppCard = ({ children, ...props }: AppCardProps): JSX.Element => {

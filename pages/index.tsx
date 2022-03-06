@@ -43,7 +43,7 @@ const Home: NextPage = () => {
         <TheHomePageNews />
       </Grid>
 
-      <Grid item sm={6}>
+      <Grid item xs={12} sm={6}>
         {members && <TheMembersList members={members} />}
       </Grid>
     </Grid>
