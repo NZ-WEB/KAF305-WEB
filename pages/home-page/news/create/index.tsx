@@ -30,9 +30,6 @@ const CreatePage = (): JSX.Element => {
       .create(data)
       .then(() => {
         setIsNewsAdded(!isNewsAdded);
-        setTimeout(() => {
-          setIsNewsAdded(false);
-        }, 3000);
       })
       .catch((e) => setErrors([...errors, ...e])),
   );

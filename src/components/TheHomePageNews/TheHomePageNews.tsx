@@ -42,6 +42,7 @@ export const TheHomePageNews = ({
     newsService
       .deleteById(newsData.id)
       .then(() => {
+        setSlideCount(0);
         setNews(news.filter((item) => item.id !== newsData.id));
       })
       .catch((e) => console.log(e));
