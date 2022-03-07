@@ -1,6 +1,4 @@
-import { CardProps } from 'material-ui';
-
-export interface AppPageTitleProps extends CardProps {
+export interface AppPageTitleProps {
   title: string;
-  description: string;
+  description?: string;
 }

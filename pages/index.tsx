@@ -28,9 +28,11 @@ const Home: NextPage = () => {
 
   return (
     <Grid container spacing={2} gap={1}>
-      <Grid item xs={12}>
-        {errors.length > 0 && <AppErrors errors={errors} />}
-      </Grid>
+      {errors.length > 0 && (
+        <Grid item xs={12}>
+          <AppErrors errors={errors} />
+        </Grid>
+      )}
 
       <Grid item xs={12}>
         <AppPageTitle
@@ -39,11 +41,11 @@ const Home: NextPage = () => {
         />
       </Grid>
 
-      <Grid item sm={5}>
+      <Grid item xs={12}>
         <TheHomePageNews />
       </Grid>
 
-      <Grid item xs={12} sm={6}>
+      <Grid item xs={12}>
         {members && <TheMembersList members={members} />}
       </Grid>
     </Grid>

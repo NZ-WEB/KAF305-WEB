@@ -1,19 +1,14 @@
-import { CardContent } from '@mui/material';
-import { AppPageTitleProps } from './AppPageTitle.props';
 import Typography from '@mui/material/Typography';
-import { AppCard } from '../AppCard/AppCard';
+import { AppPageTitleProps } from './AppPageTitle.props';
 
 export const AppPageTitle = ({
   title,
   description,
-  ...props
 }: AppPageTitleProps): JSX.Element => {
   return (
-    <AppCard {...props}>
-      <CardContent>
-        <Typography variant={'h6'}>{title}</Typography>
-        <Typography variant={'subtitle1'}>{description}</Typography>
-      </CardContent>
-    </AppCard>
+    <>
+      <Typography variant={'h4'}>{title}</Typography>
+      <Typography variant={'subtitle1'}>{description}</Typography>
+    </>
   );
 };

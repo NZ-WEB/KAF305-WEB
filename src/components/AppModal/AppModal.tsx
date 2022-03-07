@@ -2,7 +2,8 @@ import * as React from 'react';
 import { styled, Box } from '@mui/system';
 import ModalUnstyled from '@mui/base/ModalUnstyled';
 import { AppModalProps } from './AppModal.props';
-import { Button } from '@mui/material';
+import { Button, IconButton } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const StyledModal = styled(ModalUnstyled)`
   position: fixed;
@@ -23,7 +24,8 @@ const Backdrop = styled('div')`
   bottom: 0;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(80px);
   -webkit-tap-highlight-color: transparent;
 `;
 
@@ -31,7 +33,6 @@ const style = {
   width: '50wh',
   bgcolor: 'background.paper',
   border: 'none',
-  borderRadius: '1em',
   p: 2,
   px: 4,
   pb: 3,
@@ -43,6 +44,7 @@ export const AppModal = ({
   withButton = false,
   btnText,
   handle,
+  icon = false,
 }: AppModalProps): JSX.Element => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -55,9 +57,16 @@ export const AppModal = ({
 
   return (
     <div>
-      <Button type="button" variant="contained" onClick={handleOpen}>
-        {btnText}
-      </Button>
+      {icon ? (
+        <IconButton onClick={handleOpen}>
+          <DeleteIcon />
+        </IconButton>
+      ) : (
+        <Button type="button" variant="contained" onClick={handleOpen}>
+          {btnText}
+        </Button>
+      )}
+
       <StyledModal
         aria-labelledby="unstyled-modal-title"
         aria-describedby="unstyled-modal-description"
@@ -69,7 +78,7 @@ export const AppModal = ({
           <h2 id="unstyled-modal-title">{title}</h2>
           <p id="unstyled-modal-description">{subtitle}</p>
           {withButton && (
-            <Button onClick={() => handleClick()} type="button" color="warning">
+            <Button onClick={() => handleClick()} type="button">
               {btnText}
             </Button>
           )}

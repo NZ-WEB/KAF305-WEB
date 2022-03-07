@@ -13,7 +13,6 @@ import {
 } from '@mui/material';
 import * as React from 'react';
 import { useRouter } from 'next/router';
-import { AppCard } from '../../src/components/AppCard/AppCard';
 
 const LoginPage = (): JSX.Element => {
   const {
