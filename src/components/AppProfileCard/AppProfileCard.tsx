@@ -4,6 +4,7 @@ import {
   CardActions,
   CardContent,
   CardHeader,
+  Divider,
   Menu,
   MenuItem,
 } from '@mui/material';
@@ -139,12 +140,13 @@ export const AppProfileCard = ({
                 <MenuItem onClick={handleClose}>
                   <AppModal
                     handle={() => deleteMember()}
-                    withButton={true}
+                    withButton
                     btnText={'Удалить'}
                     title={'Вы действительно хотите удалить сотрудника'}
                     subtitle={
                       'после подтверждения, это действие не возможно отменить'
                     }
+                    icon
                   />
                 </MenuItem>
               </Menu>
@@ -182,7 +184,10 @@ export const AppProfileCard = ({
           ))
         }
       />
-      <CardContent>
+
+      <Divider variant="fullWidth" />
+
+      <CardContent sx={{ padding: '1em 0' }}>
         <form onSubmit={onSubmit}>
           <AppMemberInfoField
             data={member.disciplines}
@@ -233,6 +238,9 @@ export const AppProfileCard = ({
           )}
         </form>
       </CardContent>
+
+      <Divider variant="fullWidth" />
+
       <CardActions disableSpacing>
         <ExpandMore
           expand={expanded}
