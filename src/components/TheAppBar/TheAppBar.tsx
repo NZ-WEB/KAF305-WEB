@@ -4,7 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Typography from '@mui/material/Typography';
 import { AccountCircle } from '@mui/icons-material';
-import { Menu, MenuItem } from '@mui/material';
+import { Divider, Menu, MenuItem } from '@mui/material';
 import Link from 'next/link';
 import Button from '@mui/material/Button';
 import * as React from 'react';
@@ -56,7 +56,7 @@ export const TheAppBar = ({
   };
 
   return (
-    <AppBar position="fixed" open={open}>
+    <AppBar elevation={0} color="inherit" position="fixed" open={open}>
       <Toolbar>
         <IconButton
           color="inherit"
@@ -68,24 +68,25 @@ export const TheAppBar = ({
           <MenuIcon />
         </IconButton>
 
-        <img
+        {/* <img
           src="https://dev.mai.ru/generic/images/logo/mai-web.svg"
           alt="MAI"
           loading="lazy"
           width="40px"
           onClick={() => router.push('/')}
           style={{ cursor: 'pointer' }}
-        />
+        /> */}
 
-        <Typography
-          style={{ cursor: 'pointer' }}
-          onClick={() => router.push('/')}
-          sx={{ flexGrow: 1 }}
-          variant={'h6'}
-          marginLeft="5px"
-        >
-          Кафедра 305
-        </Typography>
+        <Link href={`/`}>
+          <Typography
+            style={{ cursor: 'pointer' }}
+            sx={{ flexGrow: 1 }}
+            variant={'h6'}
+            marginLeft="5px"
+          >
+            Кафедра 305
+          </Typography>
+        </Link>
 
         {auth ? (
           <div>
@@ -127,6 +128,7 @@ export const TheAppBar = ({
           </Link>
         )}
       </Toolbar>
+      <Divider />
     </AppBar>
   );
 };

@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import List from '@mui/material/List';
 import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export const TheMembersList = ({
   members,
@@ -45,36 +46,41 @@ export const TheMembersList = ({
   return (
     <>
       <Typography variant="h6">Сотрудники кафедры</Typography>
-      <List>
-        {members &&
-          computePaginatedMembers.map((member: MembersInterface) => (
-            <ListItem sx={{ padding: '0' }}>
-              <Link href={`/member/${member.slug}`} key={member.id}>
-                <ListItemButton>
-                  <Avatar alt={member.fullName} src={member.avatar} />
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'flex-start',
-                      marginLeft: '1em',
-                    }}
-                  >
-                    <Typography variant="subtitle1">
-                      {member.fullName}
-                    </Typography>
-                    <Typography variant="caption">{member.post}</Typography>
-                  </Box>
-                </ListItemButton>
-              </Link>
-            </ListItem>
-          ))}
-      </List>
-      <Pagination
-        count={getPaginationCount(MEMBERS_ON_PAGE)}
-        page={page}
-        onChange={handleChange}
-      />
+      {members ? (
+        <>
+          <List>
+            {computePaginatedMembers.map((member: MembersInterface) => (
+              <ListItem sx={{ padding: '0' }}>
+                <Link href={`/member/${member.slug}`} key={member.id}>
+                  <ListItemButton>
+                    <Avatar alt={member.fullName} src={member.avatar} />
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'flex-start',
+                        marginLeft: '1em',
+                      }}
+                    >
+                      <Typography variant="subtitle1">
+                        {member.fullName}
+                      </Typography>
+                      <Typography variant="caption">{member.post}</Typography>
+                    </Box>
+                  </ListItemButton>
+                </Link>
+              </ListItem>
+            ))}
+          </List>
+          <Pagination
+            count={getPaginationCount(MEMBERS_ON_PAGE)}
+            page={page}
+            onChange={handleChange}
+          />
+        </>
+      ) : (
+        <CircularProgress />
+      )}
     </>
   );
 };
