@@ -1,5 +1,6 @@
+/* eslint-disable prettier/prettier */
 import { AppMembersAvatarProps } from './AppMembersAvatar.props';
-import { Avatar, Badge, TextField } from '@mui/material';
+import { Avatar, TextField } from '@mui/material';
 import * as React from 'react';
 
 export const AppMembersAvatar = ({

@@ -1,4 +1,5 @@
-import { Chip, TextField } from '@mui/material';
+/* eslint-disable prettier/prettier */
+import { Divider, Grid, TextField } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
 import { AppMemberInfoFieldProps } from './AppMemberInfoField.props';
@@ -18,25 +19,41 @@ export const AppMemberInfoField = ({
 }: AppMemberInfoFieldProps): JSX.Element => {
   return (
     <>
-      {/* <Typography variant="subtitle1" color="text.secondary"> */}
       {data && !editing && (
         <>
-          <Typography sx={{display: "flex", justifyContent: "space-between", marginY: "0.5em"}} variant="subtitle1">
-            {title}:  <Chip label={data} variant="outlined" />
-          </Typography>
-          
+          <Grid
+            marginY={1}
+            container
+            gap={3}
+            alignItems="flex-start"
+            justifyContent="space-between"
+          >
+            <Grid padding={0} item xs={4}>
+              <Typography variant="subtitle1">
+                {title}:
+              </Typography>
+            </Grid>
+            <Grid padding={0} item xs={7}>
+              <Typography variant="body1">
+                {data}
+              </Typography>
+            </Grid>
+          </Grid>
         </>
-        )
-      }
-      {/* </Typography> */}
+      )}
+
       {editing && (
-        <TextField margin="dense" fullWidth id={title} label={title} variant="outlined"
-          defaultValue={title}
+        <TextField
+          margin="dense"
+          fullWidth
+          id={title}
+          label={title}
+          variant="outlined"
+          defaultValue={data}
           type="text"
           {...register(registerField.toString())}
         />
-      )
-      }
+      )}
     </>
   );
 };

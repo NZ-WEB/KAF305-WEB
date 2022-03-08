@@ -9,6 +9,7 @@ import {
   Menu,
   MenuItem,
   TextField,
+  Typography,
 } from '@mui/material';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { AppModal } from '../AppModal/AppModal';
@@ -25,6 +26,8 @@ import { styled } from '@mui/material/styles';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import { AppProfileExpanded } from '../AppProfileExpanded/AppProfileExpanded';
 import { AppCard } from '../AppCard/AppCard';
+import ModeEditIcon from '@mui/icons-material/ModeEdit';
+import EditOffIcon from '@mui/icons-material/EditOff';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -93,41 +96,60 @@ export const AppProfileCard = ({
       <CardHeader
         avatar={
           member.avatar !== '' ? (
-            <Avatar sx={{ width: '80px', height: '80px' }} alt="avatar" src={member.avatar} />
+            <Avatar
+              sx={{ width: '80px', height: '80px' }}
+              alt="avatar"
+              src={member.avatar}
+            />
           ) : (
-            <Avatar sx={{ width: '80px', height: '80px' }} alt="avatar" src={member.avatar} />
+            <Avatar
+              sx={{ width: '80px', height: '80px' }}
+              alt="avatar"
+              src={member.avatar}
+            />
           )
         }
-        title={
-          member.fullName && member.fullName
-        }
-        subheader={
-          member.fullName && member.post
-        }
+        title={member.fullName && <Typography variant="h6">{member.fullName}</Typography>}
+        subheader={member.post && <Typography variant="overline">{member.post}</Typography>}
       />
 
-      <Divider variant="fullWidth"/>
+      <Divider variant="fullWidth" />
 
       <CardContent sx={{ padding: '1em 0' }}>
         <form onSubmit={onSubmit}>
           {editing && (
             <>
-              <TextField margin="dense" fullWidth id="fullName" label="Ф.И.О." variant="outlined"
+              <TextField
+                margin="dense"
+                fullWidth
+                id="fullName"
+                label="Ф.И.О."
+                variant="outlined"
                 defaultValue={member.fullName}
                 {...register('fullName')}
               />
-              <TextField margin="dense" fullWidth id="fullName" label="Должность" variant="outlined"
+              <TextField
+                margin="dense"
+                fullWidth
+                id="fullName"
+                label="Должность"
+                variant="outlined"
                 defaultValue={member.post}
                 type="text"
                 {...register('post')}
               />
-              <TextField margin="dense" fullWidth id="avatar" label="Аватар" variant="outlined"
+              <TextField
+                margin="dense"
+                fullWidth
+                id="avatar"
+                label="Аватар"
+                variant="outlined"
                 defaultValue={member.avatar}
                 type="text"
                 {...register('avatar')}
               />
             </>
-          )} 
+          )}
 
           <AppMemberInfoField
             data={member.disciplines}
@@ -179,52 +201,22 @@ export const AppProfileCard = ({
         </form>
       </CardContent>
 
-      <Divider variant="fullWidth" />
-
       <CardActions disableSpacing>
         {auth && (
           <>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleMenu}
-              color="inherit"
-            >
-              <MoreIcon />
+            <IconButton onClick={() => setEditing(!editing)}>
+              {editing ? <EditOffIcon /> : <ModeEditIcon />}
             </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorEl}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
-            >
-              <MenuItem onClick={() => setEditing(!editing)}>
-                {editing ? 'Отм. режим редактирования' : 'Изменить'}
-              </MenuItem>
-              <MenuItem onClick={handleClose}>
-                <AppModal
-                  handle={() => deleteMember()}
-                  withButton
-                  btnText={'Удалить'}
-                  title={'Вы действительно хотите удалить сотрудника'}
-                  subtitle={
-                    'после подтверждения, это действие не возможно отменить'
-                  }
-                  icon
-                />
-              </MenuItem>
-            </Menu>
+            <AppModal
+              handle={() => deleteMember()}
+              withButton
+              btnText={'Удалить'}
+              title={'Вы действительно хотите удалить сотрудника'}
+              subtitle={
+                'после подтверждения, это действие не возможно отменить'
+              }
+              icon
+            />
           </>
         )}
 
@@ -236,7 +228,6 @@ export const AppProfileCard = ({
         >
           <ExpandMoreIcon />
         </ExpandMore>
-
       </CardActions>
 
       <AppProfileExpanded
