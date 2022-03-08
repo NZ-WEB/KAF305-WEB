@@ -22,6 +22,7 @@ export const TheProfileAddingPublications = ({
   errors,
   setErrors,
   member,
+  setPublications,
   ...props
 }: TheProfileAddingPublicationsProps): JSX.Element => {
   const publicationsService = new PublicationsService();
@@ -34,7 +35,7 @@ export const TheProfileAddingPublications = ({
   const onSubmit = handleSubmit((data) =>
     publicationsService
       .create(data, member.id)
-      .then((publication) => console.log(publication, 'created'))
+      .then(() => setPublications(data))
       .catch((e) => setErrors([...errors, e])),
   );
 

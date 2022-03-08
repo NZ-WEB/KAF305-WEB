@@ -58,7 +58,7 @@ export default class PublicationsService {
         },
       });
     } catch (error) {
-      throw error.response;
+      throw error.response.data.message;
     }
   }
 }

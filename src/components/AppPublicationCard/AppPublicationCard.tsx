@@ -19,6 +19,7 @@ export const AppPublicationCard = ({
   errors,
   setErrors,
   setPublications,
+  setDeletePublication,
   ...props
 }: AppPublicationCardProps): JSX.Element => {
   const publicationService = new PublicationsService();
@@ -38,7 +39,7 @@ export const AppPublicationCard = ({
   const deletePublication = () => {
     publicationService
       .delete(publication.slug)
-      .then((res) => console.log(res, 'deleted'))
+      .then(() => setDeletePublication(publication))
       .catch((e) => setErrors([...errors, e]));
   };
 
