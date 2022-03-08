@@ -14,6 +14,7 @@ import { useForm } from 'react-hook-form';
 import { AppFormErrorMessage } from '../AppFormErrorMessage/AppFormErrorMessage';
 import Button from '@mui/material/Button';
 import PublicationsService from '../../../service/publications/publications.service';
+import { PublicationInterface } from '../../../interfaces/publication.interface';
 
 export const TheProfileAddingPublications = ({
   auth,
@@ -32,7 +33,7 @@ export const TheProfileAddingPublications = ({
     formState: { errors: formErrors },
   } = useForm();
 
-  const onSubmit = handleSubmit((data) =>
+  const onSubmit = handleSubmit((data: PublicationInterface) =>
     publicationsService
       .create(data, member.id)
       .then(() => setPublications(data))
