@@ -6,4 +6,5 @@ export interface AppPublicationCardProps extends CardProps {
   auth?: boolean;
   errors: any[];
   setErrors(value: any[]);
+  setPublications(value: any[]);
 }

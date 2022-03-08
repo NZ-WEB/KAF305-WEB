@@ -6,12 +6,9 @@ import {
   CardContent,
   CardHeader,
   Divider,
-  Menu,
-  MenuItem,
   TextField,
   Typography,
 } from '@mui/material';
-import MoreIcon from '@mui/icons-material/MoreVert';
 import { AppModal } from '../AppModal/AppModal';
 import * as React from 'react';
 import { useContext, useState } from 'react';
@@ -19,7 +16,6 @@ import MembersService from '../../../service/members/members.service';
 import { AppContext } from '../../../context';
 import { useRouter } from 'next/router';
 import { FieldValues, UnpackNestedValue, useForm } from 'react-hook-form';
-import { AppMembersAvatar } from '../AppMembersAvatar/AppMembersAvatar';
 import { AppMemberInfoField } from '../AppMemberInfoField/AppMemberInfoField';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { styled } from '@mui/material/styles';
@@ -58,7 +54,6 @@ export const AppProfileCard = ({
   const membersService = new MembersService();
   const slug = router.query.slug?.toString();
   const { register, handleSubmit } = useForm();
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -73,14 +68,6 @@ export const AppProfileCard = ({
       .then(() => setEditing(false))
       .catch((e) => setErrors([...errors, e])),
   );
-
-  const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
 
   const deleteMember = () => {
     const slug = member.slug;
@@ -109,8 +96,16 @@ export const AppProfileCard = ({
             />
           )
         }
-        title={member.fullName && <Typography variant="h6">{member.fullName}</Typography>}
-        subheader={member.post && <Typography variant="overline">{member.post}</Typography>}
+        title={
+          member.fullName && (
+            <Typography variant="h6">{member.fullName}</Typography>
+          )
+        }
+        subheader={
+          member.post && (
+            <Typography variant="overline">{member.post}</Typography>
+          )
+        }
       />
 
       <Divider variant="fullWidth" />

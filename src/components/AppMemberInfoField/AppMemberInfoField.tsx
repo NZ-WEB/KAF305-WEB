@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Divider, Grid, TextField } from '@mui/material';
+import { Grid, TextField } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
 import { AppMemberInfoFieldProps } from './AppMemberInfoField.props';
