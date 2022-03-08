@@ -8,7 +8,6 @@ import { Divider, Menu, MenuItem } from '@mui/material';
 import Link from 'next/link';
 import Button from '@mui/material/Button';
 import * as React from 'react';
-import { useRouter } from 'next/router';
 import { styled } from '@mui/material/styles';
 import MuiAppBar from '@mui/material/AppBar';
 import { AppBarProps } from '../../../interfaces/Drawer/Drawer.interfaces';
@@ -38,7 +37,6 @@ export const TheAppBar = ({
   setAuth,
   open,
 }: TheAppBarProps): JSX.Element => {
-  const router = useRouter();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {

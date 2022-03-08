@@ -10,7 +10,6 @@ import { AppErrors } from '../src/components/AppErrors/AppErrors';
 import { TheHomePageNews } from '../src/components/TheHomePageNews/TheHomePageNews';
 import { TheMembersList } from '../src/components/TheMembersList/TheMembersList';
 import { AppCard } from '../src/components/AppCard/AppCard';
-import Image from 'next/image';
 
 const Home: NextPage = () => {
   const [errors, setErrors] = useState([]);

@@ -1,5 +1,6 @@
 import { AppProfileCardProps } from './AppProfileCard.props';
 import {
+  Avatar,
   Button,
   CardActions,
   CardContent,
@@ -7,6 +8,7 @@ import {
   Divider,
   Menu,
   MenuItem,
+  TextField,
 } from '@mui/material';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { AppModal } from '../AppModal/AppModal';
@@ -91,104 +93,42 @@ export const AppProfileCard = ({
       <CardHeader
         avatar={
           member.avatar !== '' ? (
-            <AppMembersAvatar
-              editing={editing}
-              url={member.avatar}
-              register={() => register('avatar')}
-              registerTitle={'avatar'}
-            />
+            <Avatar sx={{ width: '80px', height: '80px' }} alt="avatar" src={member.avatar} />
           ) : (
-            <AppMembersAvatar
-              editing={editing}
-              url={member.avatar}
-              register={() => register('avatar')}
-              registerTitle={'avatar'}
-            />
-          )
-        }
-        action={
-          auth && (
-            <div>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-              >
-                <MoreIcon />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={() => setEditing(!editing)}>
-                  {editing ? 'Отм. режим редактирования' : 'Изменить'}
-                </MenuItem>
-                <MenuItem onClick={handleClose}>
-                  <AppModal
-                    handle={() => deleteMember()}
-                    withButton
-                    btnText={'Удалить'}
-                    title={'Вы действительно хотите удалить сотрудника'}
-                    subtitle={
-                      'после подтверждения, это действие не возможно отменить'
-                    }
-                    icon
-                  />
-                </MenuItem>
-              </Menu>
-            </div>
+            <Avatar sx={{ width: '80px', height: '80px' }} alt="avatar" src={member.avatar} />
           )
         }
         title={
-          member.fullName &&
-          (editing ? (
-            <label>
-              Полное имя
-              <input
-                defaultValue={member.fullName}
-                type="text"
-                {...register('fullName')}
-              />
-            </label>
-          ) : (
-            member.fullName
-          ))
+          member.fullName && member.fullName
         }
         subheader={
-          member.fullName &&
-          (editing ? (
-            <label>
-              Должность
-              <input
+          member.fullName && member.post
+        }
+      />
+
+      <Divider variant="fullWidth"/>
+
+      <CardContent sx={{ padding: '1em 0' }}>
+        <form onSubmit={onSubmit}>
+          {editing && (
+            <>
+              <TextField margin="dense" fullWidth id="fullName" label="Ф.И.О." variant="outlined"
+                defaultValue={member.fullName}
+                {...register('fullName')}
+              />
+              <TextField margin="dense" fullWidth id="fullName" label="Должность" variant="outlined"
                 defaultValue={member.post}
                 type="text"
                 {...register('post')}
               />
-            </label>
-          ) : (
-            member.post
-          ))
-        }
-      />
+              <TextField margin="dense" fullWidth id="avatar" label="Аватар" variant="outlined"
+                defaultValue={member.avatar}
+                type="text"
+                {...register('avatar')}
+              />
+            </>
+          )} 
 
-      <Divider variant="fullWidth" />
-
-      <CardContent sx={{ padding: '1em 0' }}>
-        <form onSubmit={onSubmit}>
           <AppMemberInfoField
             data={member.disciplines}
             title={'Преподаваемые предметы'}
@@ -242,6 +182,52 @@ export const AppProfileCard = ({
       <Divider variant="fullWidth" />
 
       <CardActions disableSpacing>
+        {auth && (
+          <>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleMenu}
+              color="inherit"
+            >
+              <MoreIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              <MenuItem onClick={() => setEditing(!editing)}>
+                {editing ? 'Отм. режим редактирования' : 'Изменить'}
+              </MenuItem>
+              <MenuItem onClick={handleClose}>
+                <AppModal
+                  handle={() => deleteMember()}
+                  withButton
+                  btnText={'Удалить'}
+                  title={'Вы действительно хотите удалить сотрудника'}
+                  subtitle={
+                    'после подтверждения, это действие не возможно отменить'
+                  }
+                  icon
+                />
+              </MenuItem>
+            </Menu>
+          </>
+        )}
+
         <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}
@@ -250,7 +236,9 @@ export const AppProfileCard = ({
         >
           <ExpandMoreIcon />
         </ExpandMore>
+
       </CardActions>
+
       <AppProfileExpanded
         expanded={expanded}
         errors={errors}
