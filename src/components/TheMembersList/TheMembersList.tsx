@@ -17,8 +17,6 @@ export const TheMembersList = ({
   members,
 }: TheMembersListProps): JSX.Element => {
   const MEMBERS_ON_PAGE = 5;
-  console.log(members.length, 'start');
-
   const [page, setPage] = useState(1);
 
   const [computePaginatedMembers, setComputePaginatedMembers] = useState([]);
