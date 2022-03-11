@@ -10,11 +10,17 @@ import { AppErrors } from '../src/components/AppErrors/AppErrors';
 import { TheHomePageNews } from '../src/components/TheHomePageNews/TheHomePageNews';
 import { TheMembersList } from '../src/components/TheMembersList/TheMembersList';
 import { AppCard } from '../src/components/AppCard/AppCard';
+import { AppNews } from '../src/components';
+import { NewsInterface } from '../interfaces/News.interface';
+import NewsService from '../service/news/news.service';
 
 const Home: NextPage = () => {
+  const membersService = new MembersService();
+  const newsService = new NewsService();
+
   const [errors, setErrors] = useState([]);
   const [members, setMembers] = useState<[] | MembersInterface[]>([]);
-  const membersService = new MembersService();
+  const [news, setNews] = useState<NewsInterface[]>([]);
 
   const getMembersList = () => {
     membersService
@@ -23,8 +29,16 @@ const Home: NextPage = () => {
       .catch((e) => setErrors([...errors, e.data]));
   };
 
+  const getAllNews = () => {
+    newsService
+      .getAll()
+      .then((newsList) => setNews(newsList))
+      .catch((e) => setErrors([...errors, e]));
+  };
+
   useEffect(() => {
     getMembersList();
+    getAllNews();
   }, []);
 
   return (
@@ -51,6 +65,10 @@ const Home: NextPage = () => {
             alt="Paella dish"
           />
         </AppCard>
+      </Grid>
+
+      <Grid item xs={12}>
+        <AppNews news={news} />
       </Grid>
 
       <Grid item xs={12}>
