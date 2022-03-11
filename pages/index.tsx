@@ -41,6 +41,13 @@ const Home: NextPage = () => {
     getAllNews();
   }, []);
 
+  const handleDeleteNews = (id: number) => {
+    newsService
+      .deleteById(id)
+      .then(() => setNews([...news].filter((news) => news.id !== id)))
+      .catch();
+  };
+
   return (
     <Grid container spacing={2} gap={1}>
       {errors.length > 0 && (
@@ -68,7 +75,7 @@ const Home: NextPage = () => {
       </Grid>
 
       <Grid item xs={12}>
-        <AppNews news={news} />
+        <AppNews deleteNews={handleDeleteNews} news={news} />
       </Grid>
 
       <Grid item xs={12}>

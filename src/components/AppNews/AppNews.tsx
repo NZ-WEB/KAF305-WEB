@@ -9,13 +9,11 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { NewsInterface } from '../../../interfaces/News.interface';
 import { AccordionActions } from '@mui/material';
 import { AppModal } from '../AppModal/AppModal';
-import {useContext} from "react";
-import {AppContext} from "../../../context";
+import { useContext } from 'react';
+import { AppContext } from '../../../context';
 
-
-export const AppNews = ({ news }: AppNewsProps): JSX.Element => {
+export const AppNews = ({ news, deleteNews }: AppNewsProps): JSX.Element => {
   const { auth } = useContext(AppContext);
-  console.log(news, 'news');
   const [expanded, setExpanded] = React.useState<string | false>(false);
 
   const handleChange =
@@ -28,6 +26,7 @@ export const AppNews = ({ news }: AppNewsProps): JSX.Element => {
       {news.length ? (
         news.map((newsItem: NewsInterface) => (
           <Accordion
+            key={newsItem.id}
             expanded={expanded === `panel${newsItem.id}`}
             onChange={handleChange(`panel${newsItem.id}`)}
           >
@@ -53,6 +52,7 @@ export const AppNews = ({ news }: AppNewsProps): JSX.Element => {
                   btnText="Удалить"
                   title="Вы действительно хотите удалить эту новость"
                   subtitle="После удаления данное действие невозможно отменить"
+                  handle={() => deleteNews(newsItem.id)}
                 />
               </AccordionActions>
             )}

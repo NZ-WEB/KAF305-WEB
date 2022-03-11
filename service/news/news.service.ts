@@ -1,6 +1,5 @@
 import { SERVER_BASE_URL } from '../../utils/constants';
 import axios from 'axios';
-import { HomePageNewsInterface } from '../../interfaces/HomePageNews.interface';
 import { NewsInterface } from '../../interfaces/News.interface';
 
 export default class NewsService {
@@ -46,7 +45,7 @@ export default class NewsService {
       const token = JSON.parse(localStorage.getItem('user')).token;
 
       const response = await axios.delete(
-        `${SERVER_BASE_URL}/allNews/news${id}`,
+        `${SERVER_BASE_URL}/allNews/news/${id}`,
         {
           headers: {
             'Content-Type': 'application/json',
