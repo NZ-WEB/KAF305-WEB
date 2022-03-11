@@ -1,4 +1,6 @@
-import { withLayout } from '../../../../layout/Layout';
+import NewsService from '../../../service/news/news.service';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import {
   Alert,
   Breadcrumbs,
@@ -7,16 +9,13 @@ import {
   Link,
   TextField,
 } from '@mui/material';
-import { useForm } from 'react-hook-form';
-import HomePageNewsService from '../../../../service/homePage/news/HomePageNews.service';
-import { HomePageNewsInterface } from '../../../../interfaces/HomePageNews.interface';
-import { useState } from 'react';
-import * as React from 'react';
 import Typography from '@mui/material/Typography';
-import { AppCard } from '../../../../src/components';
+import { NewsInterface } from '../../../interfaces/News.interface';
+import { withLayout } from '../../../layout/Layout';
+import { AppCard } from '../../../src/components';
 
-const CreatePage = (): JSX.Element => {
-  const homePageNewsService = new HomePageNewsService();
+const CreateNewsPage = (): JSX.Element => {
+  const newsService = new NewsService();
   const [errors, setErrors] = useState([]);
   const [isNewsAdded, setIsNewsAdded] = useState(false);
   const {
@@ -25,8 +24,8 @@ const CreatePage = (): JSX.Element => {
     formState: { errors: formErrors },
   } = useForm();
 
-  const onSubmit = handleSubmit((data: HomePageNewsInterface) =>
-    homePageNewsService
+  const onSubmit = handleSubmit((data: NewsInterface) =>
+    newsService
       .create(data)
       .then(() => {
         setIsNewsAdded(!isNewsAdded);
@@ -41,7 +40,7 @@ const CreatePage = (): JSX.Element => {
           Home
         </Link>
         <Link underline="hover" color="inherit" href="/news">
-          Новости на главной
+          News
         </Link>
         <Typography color="text.primary">Create</Typography>
       </Breadcrumbs>
@@ -54,7 +53,7 @@ const CreatePage = (): JSX.Element => {
         ))}
 
       {isNewsAdded && (
-        <Alert severity="success">Запись успешно добавлена</Alert>
+        <Alert severity="success">Новость успешно добавлена</Alert>
       )}
 
       <AppCard>
@@ -68,6 +67,11 @@ const CreatePage = (): JSX.Element => {
                 fullWidth
                 {...register('icon')}
               />
+              {formErrors.icon && (
+                <Alert severity="error">
+                  <span>Поле "Иконка" обязательно к заполнению</span>
+                </Alert>
+              )}
             </Grid>
             <Grid item xs={12}>
               <TextField
@@ -85,21 +89,34 @@ const CreatePage = (): JSX.Element => {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                id="subtitle"
+                label="Подзаголовок"
+                variant="outlined"
                 fullWidth
-                id="text"
-                label="Текст"
-                multiline
-                rows={3}
-                defaultValue="Default Value"
-                {...register('text', { required: true })}
+                {...register('subtitle', { required: true })}
               />
-              {formErrors.text && (
+              {formErrors.subtitle && (
                 <Alert severity="error">
-                  <span>Поле "текст" обязательно к заполнению</span>
+                  <span>Поле "Подзаголовок" обязательно к заполнению</span>
                 </Alert>
               )}
             </Grid>
-            <Grid item md={4} xs={12}>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                id="description"
+                label="Описание"
+                multiline
+                rows={3}
+                {...register('description', { required: true })}
+              />
+              {formErrors.description && (
+                <Alert severity="error">
+                  <span>Поле "Описание" обязательно к заполнению</span>
+                </Alert>
+              )}
+            </Grid>
+            <Grid item xs={12}>
               <Button type="submit" fullWidth variant="contained">
                 Добавить новость
               </Button>
@@ -111,4 +128,4 @@ const CreatePage = (): JSX.Element => {
   );
 };
 
-export default withLayout(CreatePage);
+export default withLayout(CreateNewsPage);

@@ -119,6 +119,17 @@ export default function AppDrawer({ children }: AppDrawerProps) {
             >
               <AppSideBarListItem
                 sx={{ borderRadius: '1em' }}
+                title="Новости"
+                expanding={true}
+              >
+                <AppSideBarListItem
+                  sx={{ borderRadius: '1em' }}
+                  title="Добавить новость"
+                  route="/news/create"
+                />
+              </AppSideBarListItem>
+              <AppSideBarListItem
+                sx={{ borderRadius: '1em' }}
                 title="Сотрудники"
                 expanding={true}
               >

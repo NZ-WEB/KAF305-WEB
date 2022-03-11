@@ -50,7 +50,7 @@ export const TheMembersList = ({
         <>
           <List>
             {computePaginatedMembers.map((member: MembersInterface) => (
-              <ListItem sx={{ padding: '0' }}>
+              <ListItem key={member.id} sx={{ padding: '0' }}>
                 <Link href={`/member/${member.slug}`} key={member.id}>
                   <ListItemButton>
                     <Avatar alt={member.fullName} src={member.avatar} />
