@@ -2,11 +2,14 @@ import { LayoutProps } from './Layout.props';
 import { FunctionComponent, useState } from 'react';
 import { AppContextProvider } from '../context';
 import AppDrawer from './layout-components/AppDrawer/AppDrawer';
+import { Container } from '@mui/material';
 
 export const Layuot = ({ children, authorized }: LayoutProps): JSX.Element => {
   return (
     <>
-      <AppDrawer authorized={authorized}>{children}</AppDrawer>
+      <Container>
+        <AppDrawer authorized={authorized}>{children}</AppDrawer>
+      </Container>
     </>
   );
 };

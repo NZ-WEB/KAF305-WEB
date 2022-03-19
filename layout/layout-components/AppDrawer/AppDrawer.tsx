@@ -160,7 +160,7 @@ export default function AppDrawer({ children }: AppDrawerProps) {
           )}
         </List>
       </Drawer>
-      <Main open={open}>
+      <Main sx={{ padding: '0' }} open={open}>
         <DrawerHeader />
 
         {children}

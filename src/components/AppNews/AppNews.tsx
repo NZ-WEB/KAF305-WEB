@@ -23,9 +23,7 @@ export const AppNews = ({ news, deleteNews }: AppNewsProps): JSX.Element => {
 
   return (
     <>
-      <Typography variant="h6">
-        Новости
-      </Typography>
+      <Typography variant="h6">Новости</Typography>
       {news.length ? (
         news.map((newsItem: NewsInterface) => (
           <Accordion
